@@ -20,10 +20,11 @@
 | 9 | **技术文档**（架构 / 模块调用 / 创新点） | `docs/architecture-and-innovation.md` | ✅ 已交付 |
 | 10 | **资源报告**（token / 时长，可追溯） | `docs/token-cost-report.md` + `reports/token_report.{json,md}` | ✅ 实测 |
 | 11 | **框架贡献说明** | `docs/upstream-contribution.md`（改动清单 + 回归证据 + PR 计划） | ✅ 已交付 |
-| 12 | **PR 链接** | — | ❌ 缺 GitCode 账号与写权限 |
-| 13 | Stanford Reviewer **access token** | **`3xjzh0ZcSPc2uhS7lDhDH_r0r5Td3Dl-FiWgSMLAB90`**（venue=ICLR，`reports/review_submission.json`） | ✅ **已提交并拿到 token** |
-| 14 | Stanford Reviewer **评分** | **2.4 / 10**（7 维中仅 1 维正向）；`reports/review_result.{json,md}` | ✅ **已出分**（未达及格线 4.21） |
-| 15 | 差距分析与迭代方案 | `docs/review-result-and-gap-analysis.md` | ✅ 已交付（含一条已核实的方法学真缺陷） |
+| 12 | **PR 链接** | 改动补丁已就绪（`docs/upstream-contribution.md` §6）；公开工件仓库已建 | ⏳ 仓库已上线；PR 未提（见下方 §5 说明） |
+| 13 | 公开**工件仓库** | `https://github.com/zkk123-dd/paperswarm`（public，263 文件：内核源码 + 全部 run 台账/日志/PDF + 复现脚本） | ✅ 已上线 |
+| 14 | Stanford Reviewer **access token** | **`3xjzh0ZcSPc2uhS7lDhDH_r0r5Td3Dl-FiWgSMLAB90`**（venue=ICLR，`reports/review_submission.json`） | ✅ **已提交并拿到 token** |
+| 15 | Stanford Reviewer **评分** | **2.4 / 10**（7 维中仅 1 维正向）；`reports/review_result.{json,md}` | ✅ **已出分**（未达及格线 4.21） |
+| 16 | 差距分析与迭代方案 | `docs/review-result-and-gap-analysis.md` | ✅ 已交付（含一条已核实的方法学真缺陷） |
 
 ---
 
@@ -101,8 +102,8 @@
 | # | 未完成 | 缺什么 | 补齐方式 |
 |---|---|---|---|
 | 1 | 上游 CI 执行 18 个用例 | 真实 `openjiuwen` 依赖树（本机未装） | `pip install -e ".[test]"` 后跑 `pytest tests/agents/swarm/test_paper_providers.py` |
-| 2 | PR 链接 | GitCode 账号 + 仓库写权限 | 按 `upstream-contribution.md` §6.2 执行 |
-| 3 | **论文未达 ICLR 水准**（外部评审 2.4/10） | ① 实验用测试集选超参 ② 论文没写系统与门控 ③ 没引已有的同类工作 ④ 措辞重复 | 7 条迭代方案见 `review-result-and-gap-analysis.md` §5（前 2 条成本极低） |
+| 2 | PR 链接 | 目标仓库未定：上游主仓在 **GitCode**（`gitcode.com/openJiuwen/jiuwenswarm`），GitHub 上是镜像（`openJiuwen-ai/jiuwenswarm`）；本机已有 GitHub 账号 `zkk123-dd` 与 `gh` CLI，但**无 GitCode 账号** | 定下投哪个仓库后即可提；补丁与回归证据见 `upstream-contribution.md` §6 |
+| 3 | **论文未达 ICLR 水准**（外部评审 2.4/10） | ① 实验用测试集选超参（**已修**：`lab.py` 改为训练集内 5 折 CV，见 `experiment-protocol-fix.md`）② 论文没写系统与门控 ③ 没引已有的同类工作 ④ 措辞重复 ⑤ **论文无表格无图**（全文 0 个 `tabular`/`figure`，数字散在散文里） | 迭代方案见 `review-result-and-gap-analysis.md` §5 |
 | 4 | 对抗审稿闭环（`adversary`） | 未实现 | 设计见 `phase0-1-design.md` §2.3 |
 | 5 | 复现实验的执行后端（Linux 沙箱） | WSL 被本机安全策略硬阻断 | 选项与代价见 `env-recon.md` §3 |
 | 6 | 论文正文质量 | 本机 7B 模型能力不足（实测观察 + **外部评审确认**） | 换前沿模型对比实测 |

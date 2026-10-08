@@ -2,6 +2,9 @@
 
 面向 ICLR 模板英文论文的**可验证**自动生成系统。基于 JiuwenSwarm（openJiuwen）扩展。
 
+**公开工件仓库：<https://github.com/zkk123-dd/paperswarm>**
+产物清单与「论文数字 → 文件」映射见 [`ARTIFACTS.md`](ARTIFACTS.md)。
+
 核心主张：**论文里的每个数字都必须能追溯到一份内容未被篡改的实验产物。**
 
 不是靠 prompt 劝模型"不要编造"（那是不可验证的约束），而是让数字**根本没有手写入口**——

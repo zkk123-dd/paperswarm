@@ -1,0 +1,373 @@
+{
+  "directory": "runs\\paper-20261008-115954\\paper\\drafts",
+  "ngram": 4,
+  "thresholds": {
+    "max_pairwise_containment": 0.25,
+    "max_claim_section_spread": 3,
+    "min_type_token_ratio": 0.45
+  },
+  "sections": [
+    {
+      "name": "abstract",
+      "word_count": 112,
+      "type_token_ratio": 0.8571,
+      "result_macro_occurrences": 3,
+      "distinct_result_macros": 3
+    },
+    {
+      "name": "conclusion",
+      "word_count": 96,
+      "type_token_ratio": 0.9167,
+      "result_macro_occurrences": 1,
+      "distinct_result_macros": 1
+    },
+    {
+      "name": "discussion",
+      "word_count": 141,
+      "type_token_ratio": 0.773,
+      "result_macro_occurrences": 4,
+      "distinct_result_macros": 4
+    },
+    {
+      "name": "experiments",
+      "word_count": 201,
+      "type_token_ratio": 0.597,
+      "result_macro_occurrences": 12,
+      "distinct_result_macros": 11
+    },
+    {
+      "name": "introduction",
+      "word_count": 200,
+      "type_token_ratio": 0.82,
+      "result_macro_occurrences": 1,
+      "distinct_result_macros": 1
+    },
+    {
+      "name": "method",
+      "word_count": 223,
+      "type_token_ratio": 0.722,
+      "result_macro_occurrences": 0,
+      "distinct_result_macros": 0
+    },
+    {
+      "name": "related_work",
+      "word_count": 179,
+      "type_token_ratio": 0.8268,
+      "result_macro_occurrences": 0,
+      "distinct_result_macros": 0
+    }
+  ],
+  "pairwise": [
+    {
+      "left": "abstract",
+      "right": "introduction",
+      "shared_ngrams": 2,
+      "containment": 0.0183,
+      "left_ngrams": 109,
+      "right_ngrams": 197,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "method",
+      "shared_ngrams": 2,
+      "containment": 0.0183,
+      "left_ngrams": 109,
+      "right_ngrams": 220,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "introduction",
+      "shared_ngrams": 1,
+      "containment": 0.0108,
+      "left_ngrams": 93,
+      "right_ngrams": 197,
+      "verdict": "ok"
+    },
+    {
+      "left": "discussion",
+      "right": "experiments",
+      "shared_ngrams": 1,
+      "containment": 0.0072,
+      "left_ngrams": 138,
+      "right_ngrams": 198,
+      "verdict": "ok"
+    },
+    {
+      "left": "discussion",
+      "right": "introduction",
+      "shared_ngrams": 1,
+      "containment": 0.0072,
+      "left_ngrams": 138,
+      "right_ngrams": 197,
+      "verdict": "ok"
+    },
+    {
+      "left": "experiments",
+      "right": "introduction",
+      "shared_ngrams": 1,
+      "containment": 0.0051,
+      "left_ngrams": 198,
+      "right_ngrams": 197,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "conclusion",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 109,
+      "right_ngrams": 93,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "discussion",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 109,
+      "right_ngrams": 138,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "experiments",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 109,
+      "right_ngrams": 198,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "related_work",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 109,
+      "right_ngrams": 176,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "discussion",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 93,
+      "right_ngrams": 138,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "experiments",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 93,
+      "right_ngrams": 198,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "method",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 93,
+      "right_ngrams": 220,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "related_work",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 93,
+      "right_ngrams": 176,
+      "verdict": "ok"
+    },
+    {
+      "left": "discussion",
+      "right": "method",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 138,
+      "right_ngrams": 220,
+      "verdict": "ok"
+    },
+    {
+      "left": "discussion",
+      "right": "related_work",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 138,
+      "right_ngrams": 176,
+      "verdict": "ok"
+    },
+    {
+      "left": "experiments",
+      "right": "method",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 198,
+      "right_ngrams": 220,
+      "verdict": "ok"
+    },
+    {
+      "left": "experiments",
+      "right": "related_work",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 198,
+      "right_ngrams": 176,
+      "verdict": "ok"
+    },
+    {
+      "left": "introduction",
+      "right": "method",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 197,
+      "right_ngrams": 220,
+      "verdict": "ok"
+    },
+    {
+      "left": "introduction",
+      "right": "related_work",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 197,
+      "right_ngrams": 176,
+      "verdict": "ok"
+    },
+    {
+      "left": "method",
+      "right": "related_work",
+      "shared_ngrams": 0,
+      "containment": 0.0,
+      "left_ngrams": 220,
+      "right_ngrams": 176,
+      "verdict": "ok"
+    }
+  ],
+  "claim_macros": [
+    {
+      "claim_id": "cl-improve",
+      "occurrences": 5,
+      "sections": [
+        "abstract",
+        "conclusion",
+        "discussion",
+        "experiments",
+        "introduction"
+      ],
+      "section_spread": 5,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-noise",
+      "occurrences": 3,
+      "sections": [
+        "discussion",
+        "experiments"
+      ],
+      "section_spread": 2,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-ols-mean",
+      "occurrences": 3,
+      "sections": [
+        "abstract",
+        "discussion",
+        "experiments"
+      ],
+      "section_spread": 3,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-ridge-mean",
+      "occurrences": 3,
+      "sections": [
+        "abstract",
+        "discussion",
+        "experiments"
+      ],
+      "section_spread": 3,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-alpha",
+      "occurrences": 1,
+      "sections": [
+        "experiments"
+      ],
+      "section_spread": 1,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-features",
+      "occurrences": 1,
+      "sections": [
+        "experiments"
+      ],
+      "section_spread": 1,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-ols-std",
+      "occurrences": 1,
+      "sections": [
+        "experiments"
+      ],
+      "section_spread": 1,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-ridge-std",
+      "occurrences": 1,
+      "sections": [
+        "experiments"
+      ],
+      "section_spread": 1,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-seeds",
+      "occurrences": 1,
+      "sections": [
+        "experiments"
+      ],
+      "section_spread": 1,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-test",
+      "occurrences": 1,
+      "sections": [
+        "experiments"
+      ],
+      "section_spread": 1,
+      "verdict": "ok"
+    },
+    {
+      "claim_id": "cl-train",
+      "occurrences": 1,
+      "sections": [
+        "experiments"
+      ],
+      "section_spread": 1,
+      "verdict": "ok"
+    }
+  ],
+  "totals": {
+    "sections": 7,
+    "result_macro_occurrences": 21,
+    "distinct_result_macros": 11,
+    "trace_macros": 0,
+    "reportable_macros": 11,
+    "repeated_claim_occurrences": 10
+  },
+  "failures": [
+    "数值重复：cl-improve 在 5 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction"
+  ],
+  "passed": false
+}

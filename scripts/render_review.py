@@ -38,12 +38,21 @@ SECTION_TITLES = [
 
 
 def parse_binary(raw: str | None) -> dict[str, int]:
-    """从 ``binary_scores`` 文本里抽出 维度 -> +1/-1。"""
+    """从 ``binary_scores`` 文本里抽出 维度 -> +1/-1。
+
+    两种回传格式都见过，必须都认：
+
+    * ``- Claims_Support: 0``       （裸数字）
+    * ``- Claims_Support: [0]``     （方括号；2026-10-08 那次回传用的这种）
+
+    只认方括号外的形式会在第二种格式下静默解析出空字典，把 7 维表画成一片 "—"，
+    所以这里把括号设为可选。
+    """
     out: dict[str, int] = {}
     if not raw:
         return out
     for line in raw.splitlines():
-        m = re.match(r"\s*-?\s*([A-Za-z_]+)\s*:\s*([+-]?\d+)", line)
+        m = re.match(r"\s*-?\s*([A-Za-z_]+)\s*:\s*\[?\s*([+-]?\d+)\s*\]?", line)
         if m:
             out[m.group(1)] = int(m.group(2))
     return out
@@ -60,6 +69,8 @@ def main() -> int:
     score = rev.get("numerical_score")
     binary = parse_binary(rev.get("sections", {}).get("binary_scores"))
     positive = sum(1 for v in binary.values() if v > 0)
+    negative = sum(1 for v in binary.values() if v < 0)
+    neutral = len(binary) - positive - negative
 
     lines: list[str] = []
     a = lines.append
@@ -86,7 +97,7 @@ def main() -> int:
         mark = "**+1** ✅" if raw == 1 else ("**-1** ❌" if raw == -1 else "—")
         a(f"| `{key}` | {zh} | {mark} |")
     a("")
-    a(f"**正向 {positive} / 7**，负向 {len(binary) - positive} / 7。")
+    a(f"**正向 {positive} / 7，中性 {neutral} / 7，负向 {negative} / 7。**")
     a("")
     a("## 与目标档位对比")
     a("")
@@ -97,7 +108,10 @@ def main() -> int:
         a(f"| {name} | ≥ {th} | {why} | {ok} |")
     if isinstance(score, (int, float)):
         a("")
-        a(f"**结论：综合分 {score}，距及格线 4.21 差 {round(4.21 - score, 2)} 分。**")
+        if score >= 4.21:
+            a(f"**结论：综合分 {score}，达到及格线 4.21，高出 {round(score - 4.21, 2)} 分。**")
+        else:
+            a(f"**结论：综合分 {score}，距及格线 4.21 差 {round(4.21 - score, 2)} 分。**")
     a("")
     a("---")
     a("")
@@ -129,7 +143,7 @@ def main() -> int:
 
     Path(args.dst).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"写入 {args.dst}")
-    print(f"numerical_score = {score}  正向维度 = {positive}/7")
+    print(f"numerical_score = {score}  正向 {positive}/7  负向 {negative}/7  中性 {neutral}/7")
     return 0
 
 

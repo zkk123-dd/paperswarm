@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-29T16:44:47",
-  "pdf": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-164239\\paper\\main.pdf",
+  "generated_at": "2026-10-08T12:04:30",
+  "pdf": "runs\\paper-20261008-115954\\paper\\main.pdf",
   "constraints": {
     "max_pdf_bytes": 10485760,
     "max_analyzed_pages": 15
@@ -14,14 +14,14 @@
     {
       "check": "pdf_exists",
       "status": "PASS",
-      "detail": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-164239\\paper\\main.pdf"
+      "detail": "runs\\paper-20261008-115954\\paper\\main.pdf"
     },
     {
       "check": "size_within_10mb",
       "status": "PASS",
       "detail": {
-        "bytes": 34729,
-        "mib": 0.0331,
+        "bytes": 38979,
+        "mib": 0.0372,
         "limit_bytes": 10485760
       }
     },
@@ -44,7 +44,7 @@
       "check": "english_language",
       "status": "PASS",
       "detail": {
-        "ascii_letter_ratio": 0.943,
+        "ascii_letter_ratio": 0.95,
         "threshold": 0.6
       }
     },
@@ -75,22 +75,22 @@
       "check": "first_page_has_content",
       "status": "PASS",
       "detail": {
-        "first_page_tokens": 453,
+        "first_page_tokens": 517,
         "threshold": 80
       }
     }
   ],
   "facts": {
-    "size_bytes": 34729,
+    "size_bytes": 38979,
     "pages": 4,
-    "ascii_letter_ratio": 0.943,
+    "ascii_letter_ratio": 0.95,
     "anonymity_markers": [
       "anonymous",
       "double-blind",
       "under review"
     ],
     "unresolved_macros": 0,
-    "first_page_tokens": 453,
+    "first_page_tokens": 517,
     "title_line": [
       "Under",
       "review",

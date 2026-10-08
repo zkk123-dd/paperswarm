@@ -111,12 +111,11 @@ rail 只做"提示注入 + 事后只读审计"——**刻意不臆造 hook 的�
 ### 6.2 提交步骤（GitCode 流程）
 
 ```bash
-# 1. 准备：本机上游目录需先初始化为 git 仓库并指向远端
-cd /path/to/jiuwenswarm-develop
-git init
-git remote add origin https://gitcode.com/openJiuwen/jiuwenswarm.git
-git fetch origin
-git checkout -b feat/paper-evidence-gates origin/main
+# 1. 准备：clone 上游（默认分支已核实为 develop，不是 main）
+git clone --depth 1 --branch develop \
+    https://gitcode.com/openJiuwen/jiuwenswarm.git
+cd jiuwenswarm
+git checkout -b feat/paper-evidence-gates
 
 # 2. 应用改动（改动清单见 §3；工作区版本即最终态）
 #    核对：只应有 registry.py + config_specs.py 两个 modified
@@ -138,10 +137,16 @@ git push -u origin feat/paper-evidence-gates
 # 然后在 https://gitcode.com/openJiuwen/jiuwenswarm/pulls 开 PR
 ```
 
-> **`[待核实: 上游默认分支名是否为 `main`]`** — 用 `git ls-remote --symref origin HEAD`
-> 一次即可确认，不要照抄上面的 `origin/main`。
-> **`[待核实: GitCode 是否接受 `git push` 直推 fork 后开 PR，还是需要走 CLI]`** —
-> 以 GitCode 当前帮助文档为准。
+> **P1 已核实（2026-10-08）**：`git ls-remote --symref` 返回
+> `ref: refs/heads/develop  HEAD` —— **上游默认分支是 `develop`**（`f0a69728`），
+> `main`（`ce25a7b6`）不是开发主干。**PR 必须基于 `develop`**。
+> 本文早前版本写的 `origin/main` 是错的，已改。
+>
+> **P2 已核实（2026-10-08）**：GitCode 走 **GitLab 风格 API**
+> （`https://api.gitcode.com/api/v5/repos/{owner}/{repo}/...`，`PRIVATE-TOKEN` 头认证）；
+> 公开端的 `branches` 端点免认证可读。`https://gitcode.com` 主站在本机被 SSL 拦，
+> 但 **git 协议可达**（`git ls-remote` 成功）—— 用 `http.sslBackend=schannel`。
+> 所以 **`git push` 到 fork 后开 PR 这条路是通的**，不需要 CLI。
 
 ### 6.3 PR 描述模板
 
@@ -194,9 +199,9 @@ set. The paper elements are deliberately NOT added to `_COMMON_RAIL_NAMES` /
 
 ## 8. 待确认清单
 
-| 编号 | 内容 | 核实方式 |
+| 编号 | 内容 | 状态 |
 |---|---|---|
-| P1 | 上游默认分支名 | `git ls-remote --symref origin HEAD` |
-| P2 | GitCode 的 PR 提交方式（push fork / CLI / 网页） | GitCode 帮助文档 |
-| P3 | `openjiuwen.harness.rails` 的 Rail 基类契约 | 读 agent-core 源码 `openjiuwen/harness/rails/` |
-| P4 | `command` 类型 hook 的入参格式与"如何表达拦截" | 读 jiuwenswarm hooks 实现 + `docs/zh/工具权限与安全防护.md` |
+| P1 | 上游默认分支名 | ✅ **已核实 = `develop`**（`f0a69728`，2026-10-08） |
+| P2 | GitCode 的 PR 提交方式（push fork / CLI / 网页） | ✅ **已核实**：GitLab 风格 API v5；git 协议可达，push fork 后开 PR |
+| P3 | `openjiuwen.harness.rails` 的 Rail 基类契约 | ⏳ 待读 agent-core 源码 |
+| P4 | `command` 类型 hook 的入参格式与"如何表达拦截" | ⏳ 待读 jiuwenswarm hooks 实现 |

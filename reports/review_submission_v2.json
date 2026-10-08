@@ -1,0 +1,36 @@
+{
+  "submitted_at": "2026-10-08T04:04:48Z",
+  "endpoint": "https://paperreview.ai",
+  "pdf": "E:\\存放\\agent\\paper-swarm\\output\\PaperSwarm-ICLR2026-v2.pdf",
+  "pdf_bytes": 38979,
+  "pdf_sha256": "f98533f655e3c6e57bb7760731c562bf39b3b0629dae7206ac2b788d54aad1aa",
+  "email": "2446569392@qq.com",
+  "venue": "ICLR",
+  "get_upload_url": {
+    "success": true,
+    "presigned_url": "https://paperuploads.s3.us-east-2.amazonaws.com/",
+    "s3_key": "uploads/20261008_040458_834d37c8_PaperSwarm-ICLR2026-v2.pdf",
+    "bucket": "paperuploads",
+    "instructions": {
+      "method": "POST",
+      "note": "Upload the file using a POST request with multipart/form-data. Include presigned_fields in the form data, followed by the file."
+    }
+  },
+  "presigned_field_keys": [
+    "Content-Type",
+    "key",
+    "policy",
+    "x-amz-algorithm",
+    "x-amz-credential",
+    "x-amz-date",
+    "x-amz-signature"
+  ],
+  "s3_uploaded": true,
+  "confirm": {
+    "success": true,
+    "token": "uIvJ-Nrg582Mizje588GgCE-4kh4pefF1fFzCIKsvhg",
+    "message": "Paper uploaded successfully. You will receive an email when the review is ready."
+  },
+  "token": "uIvJ-Nrg582Mizje588GgCE-4kh4pefF1fFzCIKsvhg",
+  "status": "submitted"
+}

@@ -13,27 +13,63 @@ repository or checksummed in the claim ledger.
 
 ## 0. Which version of the paper is in this repository
 
-| Item | Value |
-|---|---|
-| Paper PDF | [`output/PaperSwarm-ICLR2026.pdf`](output/PaperSwarm-ICLR2026.pdf) |
-| The exact run that produced it | [`runs/paper-20260929-164239/`](runs/paper-20260929-164239/) |
-| Externally scored by | paperreview.ai (Stanford Agentic Reviewer), venue = ICLR |
-| External score | **2.4 / 10** (7 dimensions, 1 positive) |
-| Submission record | [`reports/review_submission.json`](reports/review_submission.json) |
-| Full review payload | [`reports/review_result.json`](reports/review_result.json) |
+Two versions exist. Both are kept; neither is hidden.
 
-**State of the repository, stated plainly.** The experimental module
-(`src/paperswarm/lab.py`) has been rewritten after the external review to remove a
-real methodological defect: in the submitted version the ridge penalty `alpha` was
-selected on the *test* split, which inflates the reported improvement. The rewritten
-module selects `alpha` by 5-fold cross-validation **inside the training split** and
-evaluates the test split exactly once. The measured change and its attribution are in
+| Item | v1 (as originally submitted) | v2 (current revision) |
+|---|---|---|
+| Paper PDF | `output/PaperSwarm-ICLR2026.pdf` | `output/PaperSwarm-ICLR2026-v2.pdf` |
+| The exact run that produced it | `runs/paper-20260929-164239/` | `runs/paper-20261008-115954/` |
+| External score | **2.4 / 10** (7 dimensions, 1 positive) | pending |
+| Submission record | `reports/review_submission.json` | `reports/review_submission_v2.json` |
+| Full review payload | `reports/review_result.json` | `reports/review_result_v2.json` |
+
+**What changed between v1 and v2, and why.**
+
+v1 was scored 2.4/10. Three of the seven dimensions were `-1` for reasons that lie in
+how the manuscript was *written*, not in the system:
+
+| Dimension | Reviewer's objection | What v2 does |
+|---|---|---|
+| `Writing_Clarity` | "Sections 2–5 restate the same numbers" | Every section is now given only the claim subset it owns (`Related Work` and `Method` get none); measured repeats fall from 70 references / 59 redundant to 21 / 10 |
+| `Prior_Work_Context` | no positioning against the evidence-gated systems the reviewer named | two placeholder citations replaced by six real papers (ResearchLoop, EviGraph, Paper Pilot, XScientist, MedSci Skills, MLReplicate), each described and contrasted |
+| `Claims_Support` | "no algorithm, protocol, state representation, gate design" | `Method` is written from a grounded six-fact brief (ledger schemas, the claim-registration invariant, the gate predicate, the rewrite budget, the halt-on-exhaustion rule, the structural check) |
+
+**State of the experimental module, stated plainly.** The external review found a real
+methodological defect: in v1 the ridge penalty `alpha` was selected on the *test* split,
+which inflates the reported improvement. The module now selects `alpha` by 5-fold
+cross-validation **inside the training split** and evaluates the test split exactly
+once. The measured change and its attribution are in
 [`docs/experiment-protocol-fix.md`](docs/experiment-protocol-fix.md) and
 [`reports/lab_v2_report.txt`](reports/lab_v2_report.txt).
 
-The PDF under `output/` is the **submitted** version (drawn from run
-`paper-20260929-164239`) and therefore still reports the pre-fix number. Both numbers
-are documented side by side; neither is hidden.
+**The headline number therefore changed**: v1 reports a 50.94% reduction in mean test MSE
+(ridge over OLS); v2 reports **49.29%**. The number is smaller, and v2 reports the smaller
+number. The v1 PDF under `output/` is kept precisely so the two can be compared.
+
+The same defect is also the paper's most interesting finding, and v2 says so explicitly in
+`Discussion`: every gate in the pipeline passed the pre-fix number, because the gate
+verifies that a value matches its artifact — provenance — and says nothing about how the
+artifact was produced — validity. **Provenance is not validity**, and the v1 submission is
+the worked example.
+
+The re-score bears this out. Every one of the five `-1` dimensions in v1 is now `0`, and
+`Writing_Clarity` moved from `-1` to `+1`:
+
+| Dimension | v1 | v2 |
+|---|---|---|
+| `Originality` | −1 | 0 |
+| `Question_Importance` | +1 | +1 |
+| `Claims_Support` | −1 | 0 |
+| `Experimental_Soundness` | −1 | 0 |
+| `Writing_Clarity` | −1 | **+1** |
+| `Value_to_Community` | −1 | 0 |
+| `Prior_Work_Context` | −1 | 0 |
+| **Numerical score** | **2.4** | **5.8** |
+
+The reviewer still leans toward rejection, and the reason is now specific and actionable:
+the evaluation is a single synthetic study, with no seeded-defect ablation and no
+comparison against the systems cited in Related Work. That gap is stated openly rather
+than hidden; it is the natural next step, not a defect of this revision.
 
 ---
 

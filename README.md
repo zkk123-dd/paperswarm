@@ -58,8 +58,23 @@ PY="C:/Users/周凯/.workbuddy/binaries/python/envs/default/Scripts/python.exe"
 "$PY" scripts/review_readiness.py
 ```
 
-模型配置见 `configs/model.yaml`；端点与模型名也可用环境变量覆盖：
-`PAPER_LLM_BASE_URL` / `PAPER_LLM_MODEL` / `PAPER_LLM_API_KEY`。
+模型配置见 `configs/model.yaml`，现有 profile：
+
+| profile | 端点 | 模型 | 用途 |
+|---|---|---|---|
+| `local-ollama` | `http://127.0.0.1:11434/v1` | `qwen2.5:7b-instruct-q4_K_M` | 零边际成本、离线回归 |
+| `cloud-deepseek` | `https://api.deepseek.com/v1` | `deepseek-v4-pro` | 正文写作（语言质量） |
+
+```bash
+"$PY" scripts/full_paper.py --profile cloud-deepseek   # 云端出全文
+```
+
+密钥只从环境变量读：`PAPER_LLM_BASE_URL` / `PAPER_LLM_MODEL` / `PAPER_LLM_API_KEY`。
+也可以写进 `.env.local`（已被 `.gitignore` 排除，入口脚本自动加载；已存在的环境变量优先）：
+
+```bash
+cp .env.example .env.local    # 然后填真实 key
+```
 
 **完整复现步骤、依赖版本与 11 条验收点见 [`docs/reproduction-guide.md`](docs/reproduction-guide.md)。**
 
@@ -72,6 +87,7 @@ src/paperswarm/                  内核（零框架依赖，可脱离 JiuwenSwar
   evidence.py      台账：artifact SHA-256 登记 + claim 登记 + verify() 四重校验
   tex_gate.py      \result{claim_id} 门控与数值回填（gate_text / gate_strict / resolve）
   llm.py           OpenAI 兼容客户端：显式超时 + 有界重试（指数退避 + 全抖动）
+  envfile.py       .env.local 加载（只由入口脚本调用；库层只认 os.environ）
   telemetry.py     Token / 时延 / 成本追加式 JSONL 台账（不内置价格表）
   agentloop.py     有界工具调用循环（五重上界）
   tools.py         把台账包成模型可调工具（compact 4 个 / 完整 7 个）

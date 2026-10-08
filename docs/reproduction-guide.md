@@ -100,7 +100,8 @@ E:/tools/tectonic/tectonic.exe --version
 | 路径 | 需要什么 | 边际成本 |
 |---|---|---|
 | **离线路径**（`--skip-llm-check`） | 什么都不需要 | — |
-| **端到端路径** | 本机 Ollama 在跑 | **0 元** |
+| **本机端到端路径** | 本机 Ollama 在跑 | **0 元** |
+| **云端端到端路径** | `.env.local` 里有 `PAPER_LLM_API_KEY` | 按 token 计费（单价[待核实]） |
 
 ```bash
 # 检查 Ollama 是否就绪
@@ -111,7 +112,7 @@ curl -s http://127.0.0.1:11434/api/tags
 已核实（本机实测）：Ollama 0.34.4 / 端点 `http://127.0.0.1:11434/v1`（OpenAI 兼容）/
 模型 `qwen2.5:7b-instruct-q4_K_M`（7.6B Q4_K_M，上下文 32768）/ **function calling 正常**（返回 `tool_calls`）。
 
-### 1.5 环境变量
+### 1.5 环境变量与密钥
 
 | 变量 | 用途 | 默认 |
 |---|---|---|
@@ -120,7 +121,56 @@ curl -s http://127.0.0.1:11434/api/tags
 | `PAPER_LLM_API_KEY` | API key（**只从环境变量读，禁止硬编**） | 本机 Ollama 不需要 |
 
 `configs/model.yaml` 里 `api_key_env: PAPER_LLM_API_KEY` 是**间接引用**，
-明文 key 不写进仓库、不进日志。
+明文 key 不写进仓库、不进日志。`llm.py` 里没有任何文件读取调用——
+它只认 `os.environ`——因此可以断言"密钥不可能从配置文件流进版本库"。
+
+**密钥怎么进环境变量（两种，任选）**
+
+1. **手动导出**（临时覆盖用，优先级最高）：
+
+   ```bash
+   export PAPER_LLM_API_KEY=sk-...
+   ```
+
+2. **`.env.local` 文件**（便利路径，推荐日常使用）：
+
+   ```bash
+   cp .env.example .env.local   # 然后填入真实 key
+   ```
+
+   `scripts/full_paper.py` 与 `scripts/vertical_slice.py` 在**入口处**调用
+   `paperswarm.envfile.load_env_file()`，把 `.env.local` 里的 `KEY=VALUE`
+   灌进 `os.environ`。三条硬规则：
+
+   - **已存在的环境变量优先**，所以第 1 种方式随时能覆盖文件里的值；
+   - 函数只返回**被设置的键名**，返回值与日志里永不出现值；
+   - `.env.local` 已被 `.gitignore` 的 `.env.*` 规则排除，`.env.example` 例外保留。
+
+     ```bash
+     git check-ignore -v .env.local     # 应输出 .gitignore:3:.env.*  .env.local
+     ```
+
+### 1.6 云模型 profile（正文写作）
+
+`configs/model.yaml` 的 `cloud-deepseek` profile 指向 DeepSeek 官方 API
+（`https://api.deepseek.com/v1`，模型 `deepseek-v4-pro`）。已核实（2026-10-08 实测）：
+
+- `GET /v1/models` 返回 **200**，可用 id 为 `deepseek-v4-pro` / `deepseek-flash`，
+  两者 `context_window=1048576`、`max_output_tokens=393216`；
+- `deepseek-v4-pro` 为**推理模型**：响应先出 `reasoning_content` 再出正文，
+  且推理 token 计入 `completion_tokens`（影响资源报告口径）；
+- `POST /v1/chat/completions` 极短请求往返约 **1.0–1.25 s**。
+
+```bash
+# 用云 profile 出正文
+"$PY" scripts/full_paper.py --profile cloud-deepseek
+
+# 只探测连通性与用量（不打全文）
+"$PY" -c "import sys; sys.path.insert(0,'src'); from paperswarm.envfile import load_env_file; from pathlib import Path; load_env_file(base_dir=Path('.')); from paperswarm.llm import LLMConfig, ChatClient; print(ChatClient(LLMConfig.from_yaml('configs/model.yaml','cloud-deepseek')).probe())"
+```
+
+> **单价尚未核实**：`cloud-deepseek` 的 `price_per_1k_*` 保持未填。
+> 未核实前资源报告只记 **token 数**，不折算金额——不猜数字。
 
 ---
 

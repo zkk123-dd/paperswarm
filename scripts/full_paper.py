@@ -127,21 +127,78 @@ SECTION_SPECS: tuple[tuple[str, str, bool, str, int], ...] = (
 )
 
 BIB_ENTRIES: tuple[str, ...] = (
-    """@misc{fars2026,
-  title        = {{FARS}: A Fully Automated Research System},
-  author       = {{Analemma}},
+    # --- 直接相关的先前工作：证据门控 / 溯源 / 证据图自主研究系统 ---
+    # 每一条都按 arXiv 编号核对过标题与作者（见 reports/bib-verification.md）。
+    """@misc{xia2026researchloop,
+  title        = {{ResearchLoop}: An Evidence-Gated Control Plane for {AI}-Assisted
+                  Research},
+  author       = {Xia, Yihan and Wang, Taotao},
   year         = {2026},
-  howpublished = {\\url{https://analemma.ai/blog/introducing-fars/}},
-  note         = {Accessed 2026-09-29}
+  eprint       = {2605.28282},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  note         = {Introduces claim ledgers, evidence contracts and a gate-predicate
+                  specification as durable project state}
 }""",
-    """@misc{iclr2026cfp,
-  title        = {International Conference on Learning Representations 2026:
-                  Call for Papers and Author Guidelines},
-  author       = {{ICLR} {2026} Organizing Committee},
+    """@misc{ren2026evigraph,
+  title        = {{EviGraph}: Evidence-Guided Autonomous Research Agents},
+  author       = {Ren, Zhenjiang and Li, Ruiji and Zhang, Xujing and Pang, Ziliang
+                  and Ren, Shuo and Zhang, Jiajun},
   year         = {2026},
-  howpublished = {\\url{https://iclr.cc/}},
-  note         = {Submission format: 9 pages of main text; anonymous review}
+  eprint       = {2608.04738},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  note         = {Uses a typed evidence graph as the operational state and reports
+                  a 40.19\\% Claim Support Rate gain over the strongest baseline}
 }""",
+    """@misc{jha2026paperpilot,
+  title        = {{Paper Pilot}: A Human-in-the-Loop Expert System for
+                  Evidence-Traceable Scientific Manuscript Generation in Applied
+                  Sciences},
+  author       = {Jha, Nidhi and Chaudhary, Siddharth and Kulkarni, Ajinkya},
+  year         = {2026},
+  eprint       = {2608.28596},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  note         = {Eight human approval gates; reports zero fabricated citations
+                  under evidence-locked rules vs. up to 25\\% when ungated}
+}""",
+    """@misc{luo2026xscientist,
+  title        = {{XScientist}: A Git-Like Research Protocol for Long-Running
+                  Autonomous Scientific Discovery},
+  author       = {Luo, Jixiang},
+  year         = {2026},
+  eprint       = {2607.12301},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.SE},
+  note         = {Claim-to-evidence anchors; explicitly warns that a passing
+                  integrity check is not scientific truth}
+}""",
+    """@misc{nam2026medsci,
+  title        = {Deterministic Integrity Gates for {LLM}-Assisted Clinical
+                  Manuscript Preparation: An Auditable Biomedical Informatics
+                  Architecture},
+  author       = {Nam, Yoojin and Jeong, Jinhoon and Kim, Namkug},
+  year         = {2026},
+  eprint       = {2606.09500},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  note         = {Seeded-defect ablation: deterministic gates detect 27/27 injected
+                  defects where a single-prompt LLM reviewer detects 11}
+}""",
+    """@misc{gaddipati2026mlreplicate,
+  title        = {{MLReplicate}: Benchmarking Autonomous Research Systems for
+                  Machine Learning Reproducibility},
+  author       = {Gaddipati, Sasi Kiran and Muhammed, Diyana and Keya, Farhana
+                  and Rabby, Gollam and Auer, S{\\"o}ren},
+  year         = {2026},
+  eprint       = {2605.16616},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  note         = {45 generated manuscripts; 59\\% of accepted automated reviews
+                  contained fabricated or unsupported claims}
+}""",
+    # --- 本文实验用到的经典统计方法 ---
     """@article{hoerl1970ridge,
   title   = {Ridge Regression: Biased Estimation for Nonorthogonal Problems},
   author  = {Hoerl, Arthur E. and Kennard, Robert W.},
@@ -149,10 +206,20 @@ BIB_ENTRIES: tuple[str, ...] = (
   volume  = {12},
   number  = {1},
   pages   = {55--67},
-  year    = {1970},
-  note    = {BibTeX entry transcribed by the authors; verify against the
-             publisher record before camera-ready}
+  year    = {1970}
 }""",
+)
+
+#: 可引用的文献键（与 :data:`BIB_ENTRIES` 一一对应）。写作时只把这些交给模型，
+#: 模型不得引入表外的 key —— 这是"不编造引用"的第一道约束。
+CITATION_KEYS: tuple[str, ...] = (
+    "xia2026researchloop",
+    "ren2026evigraph",
+    "jha2026paperpilot",
+    "luo2026xscientist",
+    "nam2026medsci",
+    "gaddipati2026mlreplicate",
+    "hoerl1970ridge",
 )
 
 SYSTEM_PROMPT = """You are one agent in PaperSwarm, a multi-agent system that writes ICLR-style
@@ -166,19 +233,161 @@ The system replaces each \\result{...} with the real value at build time, and it
 REJECTS any section that contains a hand-written result number. A section that
 reports a number without a claim id is worthless to us, even if the number is correct.
 
+SCOPE DISCIPLINE (this is graded as harshly as the numeric rule):
+You are given the claims THIS section is allowed to report. Report only those.
+Do NOT restate a result that another section owns just to fill space. In a previous
+build every section repeated the same eleven numbers and a reviewer wrote that
+"Sections 2-5 restate the same numbers with minimal new insight". Each section must
+carry its own weight:
+- Introduction: motivation and the single headline number. No setup, no baselines.
+- Related Work: what other systems do and how this one differs. NO numbers at all.
+- Method: the system's design, state representation and gate predicates. NO numbers.
+- Experiments: the setup and the comparison. This is where the numbers live.
+- Discussion: what the result means and where the evidence stops. Few numbers.
+- Conclusion: one paragraph, headline number only, no new claims.
+
 Other rules:
 - English, academic style, third person, no marketing language.
 - Output ONLY the body of the section. Do NOT output \\documentclass, \\usepackage,
   \\begin{document}, \\end{document}, or the \\section{...} heading itself.
-- Do NOT use \\subsection either. Write 3-5 continuous paragraphs of plain prose
-  with no sub-headings at all.
-- Write ONLY about the section you were asked to write. Never put another
-  section's material inside it: the Introduction must NOT contain an
-  experimental-setup breakdown, a baseline discussion, or a "Conclusion"
-  paragraph -- those belong to their own sections.
+- Do NOT use \\subsection. Write 3-5 continuous paragraphs of plain prose.
 - Do NOT redefine \\result, and do not use \\newcommand on it.
-- Do not invent citations. Only use the citation keys you are given.
+- Do not invent citations. Only use the citation keys you are given, and cite the
+  system you are describing, not a call for papers or a blog post.
 - No markdown code fences, no commentary before or after the LaTeX."""
+
+
+#: 每章的写作契约：允许报告的 claim 子集 + 推荐引用的文献 + 内容边界。
+#:
+#: 为什么把 claim 按章切成子集：v1 里 7B 模型把同一批结果写进了所有章节，
+#: 评审据此判 Writing_Clarity = -1。"重复"的物理来源就是 claim 清单对每一章
+#: 都完全一样 —— 与其在 prompt 里求它别重复，不如直接把可用的数字按章限定。
+SECTION_BRIEFS: dict[str, dict[str, Any]] = {
+    "introduction": {
+        "claims": ("cl-improve", "cl-ridge-mean", "cl-ols-mean"),
+        "cites": ("xia2026researchloop", "ren2026evigraph", "luo2026xscientist"),
+        "guidance": (
+            "Motivate the problem: autonomous paper generators can produce a fluent "
+            "manuscript whose claims are easier to state than to audit. Say what "
+            "PaperSwarm adds (binding every reported number to a re-verifiable artifact "
+            "and refusing to assemble a section that violates that binding) and quote "
+            "the single headline number. Do NOT describe the dataset, the baselines, or "
+            "the noise floor; do NOT write a concluding paragraph."
+        ),
+    },
+    "related_work": {
+        "claims": (),
+        "cites": (
+            "xia2026researchloop",
+            "ren2026evigraph",
+            "jha2026paperpilot",
+            "luo2026xscientist",
+            "nam2026medsci",
+            "gaddipati2026mlreplicate",
+        ),
+        "guidance": (
+            "Cite at least five of the available keys. For EACH key you cite, state in "
+            "one sentence what that system does, then state what PaperSwarm does "
+            "differently. Do not claim PaperSwarm is the first to gate on evidence -- "
+            "several of these systems do exactly that. Position PaperSwarm honestly as "
+            "a smaller, standalone, within-manuscript gate whose contribution is showing "
+            "where such gates stop working. This section reports NO numbers; never use "
+            "\\result{} here."
+        ),
+    },
+    "method": {
+        "claims": (),
+        "cites": ("hoerl1970ridge",),
+        "guidance": (
+            "Describe the SYSTEM. Report no experimental numbers; never use \\result{}. "
+            "Ground every statement in exactly these facts, and invent nothing beyond "
+            "them:\n"
+            "(a) A run writes two append-only JSONL ledgers. artifacts.jsonl records each "
+            "experiment artifact as (artifact_id, path, sha256, bytes, producer). "
+            "claims.jsonl records each numeric claim as (claim_id, artifact_id, a JSON "
+            "Pointer into that artifact, value, display string).\n"
+            "(b) A claim may only be registered if the stated value equals the value the "
+            "artifact actually holds at that JSON Pointer; any mismatch aborts the run "
+            "before writing.\n"
+            "(c) Section writers never emit digits. They emit \\result{claim_id}; the "
+            "assembler substitutes the verified value at build time.\n"
+            "(d) The gate is a predicate over the draft text. It rejects a section when "
+            "the text references an unknown claim_id, when a referenced claim fails "
+            "re-verification against its artifact, when the text redefines the \\result "
+            "macro, or when a literal number appears in a result context.\n"
+            "(e) A rejected draft is returned to the writer with the list of violations "
+            "and rewritten from scratch, up to a fixed attempt budget; if the budget is "
+            "exhausted the run terminates without producing a PDF rather than shipping a "
+            "weaker paper.\n"
+            "(f) A structural check rejects a section that writes another section's "
+            "material. The experiment itself is a controlled synthetic regression study; "
+            "the statistical method for the baseline is due to \\citet{hoerl1970ridge}.\n"
+            "IMPORTANT: never emit the literal macro text anywhere in this section -- "
+            "not even inside \\texttt{}. The build-time checker treats any occurrence of "
+            "that literal in the compiled PDF as an unresolved placeholder. Refer to it "
+            "in words instead, e.g. 'a result macro that takes a claim identifier'."
+        ),
+    },
+    "experiments": {
+        "claims": (
+            "cl-ols-mean",
+            "cl-ols-std",
+            "cl-ridge-mean",
+            "cl-ridge-std",
+            "cl-improve",
+            "cl-alpha",
+            "cl-noise",
+            "cl-seeds",
+            "cl-features",
+            "cl-train",
+            "cl-test",
+        ),
+        "cites": ("hoerl1970ridge",),
+        "guidance": (
+            "This is the only section that reports numbers, so it must use at least "
+            "five \\result{} references. State the full data-generating process so a "
+            "reader could reproduce it: a design matrix with 120 features generated from "
+            "a low-rank latent factor model, 90 training rows and 200 test rows per "
+            "split, additive Gaussian noise on the target with standard deviation 0.35 "
+            "whose square is the irreducible noise floor, averaged over 8 random seeds. "
+            "State the protocol explicitly: the ridge penalty is chosen by 5-fold "
+            "cross-validation inside the training split, and the test split is evaluated "
+            "exactly once. Be explicit that an earlier version selected the penalty on "
+            "the test set and that this was a methodological error now corrected. "
+            "Report the OLS and ridge means with standard deviations, the relative "
+            "improvement, the selected penalty and the noise floor, then comment on how "
+            "far each method remains above the floor."
+        ),
+    },
+    "discussion": {
+        "claims": ("cl-improve", "cl-ridge-mean", "cl-ols-mean", "cl-noise"),
+        "cites": ("luo2026xscientist",),
+        "guidance": (
+            "Interpret the result and then state the boundary of the evidence. Use the "
+            "two means, the improvement and the noise floor; add no other numbers. "
+            "Two points must be made explicit. First, why regularisation helps here: the "
+            "design matrix is ill-conditioned (120 features against 90 training rows), "
+            "so the minimum-norm solution has high variance. Second, and more important, "
+            "state the limitation of the contribution: the gate verifies that a reported "
+            "value matches its artifact, which is a statement about provenance, not about "
+            "validity. In this very study the pre-registered penalty was selected on the "
+            "test set and the gate passed the resulting number without objection, because "
+            "the number was faithfully recorded. Provenance is not validity, and a gate "
+            "that only binds numbers to artifacts cannot detect a flaw in the design that "
+            "produced the artifact. \\citet{luo2026xscientist} makes the adjacent point "
+            "that a passing integrity check is not scientific truth."
+        ),
+    },
+    "conclusion": {
+        "claims": ("cl-improve",),
+        "cites": (),
+        "guidance": (
+            "One paragraph. Restate the contribution, the headline number and the main "
+            "limitation (provenance is not validity). Introduce no new numbers and no "
+            "new citations."
+        ),
+    },
+}
 
 
 # 注意：越界检测的实现放在内核 paperswarm.assemble 里（check_section_prose），
@@ -203,11 +412,19 @@ def strip_section_heading(text: str) -> str:
 
 
 def build_claim_table(claims: Sequence[tuple[str, str, str]]) -> str:
-    """把 claim 清单渲染成给模型看的表格文本。"""
+    """把 claim 清单渲染成给模型看的表格文本；空清单返回空串。"""
+    if not claims:
+        return ""
     lines = ["| claim_id | what the number means |", "|---|---|"]
     for claim_id, meaning, _pointer in claims:
         lines.append(f"| `{claim_id}` | {meaning} |")
     return "\n".join(lines)
+
+
+def claims_for_section(stem: str) -> tuple[tuple[str, str, str], ...]:
+    """按 :data:`SECTION_BRIEFS` 把全局 claim 清单切出本章可用的子集。"""
+    allowed = set(SECTION_BRIEFS[stem]["claims"])
+    return tuple(spec for spec in CLAIM_SPECS if spec[0] in allowed)
 
 
 def build_section_prompt(
@@ -217,14 +434,20 @@ def build_section_prompt(
     must_cite: bool,
     claim_table: str,
     citation_keys: Sequence[str],
+    guidance: str,
 ) -> str:
     """构造某一章节的用户侧提示。"""
     parts = [
         f"Paper title: {PAPER_TITLE}",
         f"Section to write: {section_title}",
         "",
-        "Available evidence claims (these are the ONLY numbers you may report):",
-        claim_table,
+        "How this section must be written:",
+        guidance,
+        "",
+        "Evidence claims this section is allowed to report (these are the ONLY numbers "
+        "you may report; a claim that is not in this list belongs to another section "
+        "and must not appear here):",
+        claim_table if claim_table else "(none -- this section reports no numbers)",
         "",
         f"Target length: about {target_words} words.",
     ]
@@ -232,14 +455,21 @@ def build_section_prompt(
         parts += [
             "",
             "This section MUST report experimental results, so it MUST contain at "
-            "least one \\result{claim_id} reference. Aim for 4-6 of them: the OLS "
-            "and ridge means with their standard deviations, the relative "
-            "improvement, the selected penalty, and the noise floor.",
+            "least one \\result{claim_id} reference. Aim for 5-8 of them.",
+        ]
+    if citation_keys:
+        parts += [
+            "",
+            "Available citation keys (use \\citep{key} or \\citet{key}; do not use "
+            "any key outside this list): "
+            + ", ".join(f"`{key}`" for key in citation_keys),
+        ]
+    else:
+        parts += [
+            "",
+            "You have no citation keys for this section: do not cite anything here.",
         ]
     parts += [
-        "",
-        "Available citation keys (use \\citep{key} or \\citet{key}): "
-        + ", ".join(f"`{key}`" for key in citation_keys),
         "",
         "Reminder: any experimental number written as literal digits will cause the "
         "section to be rejected. Use \\result{claim_id} instead.",
@@ -267,8 +497,9 @@ def generate_section(
     Raises:
         RuntimeError: 用尽尝试次数仍未通过门控。
     """
-    claim_table = build_claim_table(CLAIM_SPECS)
-    citation_keys = ("fars2026", "iclr2026cfp", "hoerl1970ridge")
+    brief = SECTION_BRIEFS[stem]
+    claim_table = build_claim_table(claims_for_section(stem))
+    citation_keys = tuple(str(key) for key in brief["cites"])
     messages: list[dict[str, Any]] = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {
@@ -279,6 +510,7 @@ def generate_section(
                 must_cite=must_cite,
                 claim_table=claim_table,
                 citation_keys=citation_keys,
+                guidance=str(brief["guidance"]),
             ),
         },
     ]
@@ -286,7 +518,7 @@ def generate_section(
     last_issues: list[str] = []
     for attempt in range(1, max_attempts + 1):
         started = time.perf_counter()
-        response = client.chat(messages, temperature=0.4, max_tokens=1600)
+        response = client.chat(messages, temperature=0.4, max_tokens=6000)
         latency_ms = int((time.perf_counter() - started) * 1000)
         telemetry.record_call(
             span=f"writer.{stem}",
@@ -386,7 +618,7 @@ def generate_abstract(
     last_issues: list[str] = []
     for attempt in range(1, max_attempts + 1):
         started = time.perf_counter()
-        response = client.chat(messages, temperature=0.4, max_tokens=900)
+        response = client.chat(messages, temperature=0.4, max_tokens=3000)
         latency_ms = int((time.perf_counter() - started) * 1000)
         telemetry.record_call(
             span="writer.abstract",

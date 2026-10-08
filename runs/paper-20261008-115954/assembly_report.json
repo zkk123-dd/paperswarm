@@ -1,0 +1,78 @@
+{
+  "work_dir": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper",
+  "ok": true,
+  "abstract_refs": 3,
+  "sections": [
+    {
+      "name": "introduction",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\drafts\\introduction.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\sections\\introduction.tex",
+      "refs": 1,
+      "resolved": 1,
+      "warnings": []
+    },
+    {
+      "name": "related_work",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\drafts\\related_work.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\sections\\related_work.tex",
+      "refs": 0,
+      "resolved": 0,
+      "warnings": [
+        "正文没有任何 \\result{} 引用：要么这篇论文不含数值结论，要么数值被手写进了正文（请人工复核）"
+      ]
+    },
+    {
+      "name": "method",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\drafts\\method.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\sections\\method.tex",
+      "refs": 0,
+      "resolved": 0,
+      "warnings": [
+        "正文没有任何 \\result{} 引用：要么这篇论文不含数值结论，要么数值被手写进了正文（请人工复核）"
+      ]
+    },
+    {
+      "name": "experiments",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\drafts\\experiments.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\sections\\experiments.tex",
+      "refs": 12,
+      "resolved": 12,
+      "warnings": []
+    },
+    {
+      "name": "discussion",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\drafts\\discussion.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\sections\\discussion.tex",
+      "refs": 4,
+      "resolved": 4,
+      "warnings": []
+    },
+    {
+      "name": "conclusion",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\drafts\\conclusion.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\sections\\conclusion.tex",
+      "refs": 1,
+      "resolved": 1,
+      "warnings": []
+    }
+  ],
+  "main_tex": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\main.tex",
+  "compile": {
+    "ok": true,
+    "pdf_path": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\main.pdf",
+    "returncode": 0,
+    "attempts": 1,
+    "stdout_tail": "note: \"version 2\" Tectonic command-line interface activated\nnote: Running TeX ...\nnote: Running BibTeX on main.aux ...\nnote: Rerunning TeX because bibtex was run ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\main.pdf` (38.0654296875 KiB)\nnote: Skipped writing 3 intermediate files (use --keep-intermediates to keep them)\n",
+    "stderr_tail": "Fontconfig error: Cannot load default config file: No such file: (null)\nwarning: sections/related_work.tex:6: Underfull \\hbox (badness 1406) in paragraph at lines 5--6\nwarning: sections/related_work.tex:6: Underfull \\vbox (badness 3068) has occurred while \\output is active\nwarning: sections/experiments.tex:6: Underfull \\vbox (badness 10000) has occurred while \\output is active\nwarning: sections/related_work.tex:6: Underfull \\hbox (badness 1406) in paragraph at lines 5--6\nwarning: sections/related_work.tex:6: Underfull \\vbox (badness 3068) has occurred while \\output is active\nwarning: sections/experiments.tex:6: Underfull \\vbox (badness 10000) has occurred while \\output is active\nwarning: sections/related_work.tex:6: Underfull \\hbox (badness 1406) in paragraph at lines 5--6\nwarning: sections/related_work.tex:6: Underfull \\vbox (badness 3068) has occurred while \\output is active\nwarning: sections/experiments.tex:6: Underfull \\vbox (badness 10000) has occurred while \\output is active\nwarning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.\n"
+  },
+  "pdf": {
+    "path": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20261008-115954\\paper\\main.pdf",
+    "pages": 4,
+    "size_bytes": 38979,
+    "size_mb": 0.037,
+    "size_ok": true,
+    "pages_ok": true,
+    "page_limit": 9,
+    "size_limit_bytes": 10485760
+  }
+}

@@ -1,0 +1,11 @@
+% 本文件由 paperswarm.tex_gate 从台账自动生成，请勿手工编辑。
+% 每个数值均由证据台账注入：claim_id -> (artifact SHA-256, JSON Pointer)。
+\section{Experiments}
+
+The evaluation uses a synthetic design matrix with 120 features generated from a low-rank latent factor model. Each split contains 90 training rows and 200 test rows. The target is a linear function of the latent factors plus additive Gaussian noise; the noise variance is 0.1225, which is the irreducible mean squared error floor because the conditional mean of the target cannot recover the noise. The noise standard deviation is fixed so that its square equals this floor. All estimates are averaged over 8 random seeds, where each seed redraws the design matrix, latent factors, coefficients, and noise.
+
+Within each seed, ridge regression \citep{hoerl1970ridge} is fitted on the training split with its penalty selected by five-fold cross-validation inside the training split; the test split is held out and evaluated exactly once. The OLS baseline is the minimum-norm solution, appropriate because the design is underdetermined. An earlier version selected the ridge penalty on the test split. That procedure allowed test labels to influence model selection, inflated the apparent advantage of ridge regression, and has been corrected; the current protocol never touches test labels until final evaluation.
+
+Across seeds, the mean test MSE of OLS is 0.617561 with a seed standard deviation of 0.129271. Ridge regression at the selected penalty achieves a mean test MSE of 0.313155 with a seed standard deviation of 0.0655598. The relative reduction in mean test MSE is 49.29 percent. The penalty selected by cross-validation is 0.1.
+
+Both estimators remain above the irreducible noise floor 0.1225. OLS is farther above the floor, reflecting its high variance in the underdetermined setting. Ridge regression is closer to the floor, but its residual gap indicates finite-sample estimation error that even a well-chosen penalty cannot eliminate. The results therefore measure the variance reduction from \citep{hoerl1970ridge} under leakage-free model selection, not a claim of attaining the Bayes error.

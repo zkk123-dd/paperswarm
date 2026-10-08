@@ -1,0 +1,9 @@
+Related Work
+
+The task of generating reproducible research papers involves several approaches, each with its own strengths and limitations. Fars et al. \citep{fars2026} introduced a method that leverages natural language processing to automatically generate paper sections, but their approach lacks the nuance and flexibility required for complex scientific discourse. 
+
+In contrast, our work, PaperSwarm, introduces an evidence-gated multi-agent system designed to address these limitations. We compare our system with traditional machine learning methods, specifically ordinary least squares (OLS) and ridge regression. The mean test mean squared error (MSE) of the minimum-norm OLS solution, averaged over \result{cl-seeds} seeds, was \result{cl-ols-mean}. This result highlights the instability of OLS solutions, as indicated by the high standard deviation (\result{cl-ols-std}).
+
+Ridge regression, on the other hand, demonstrated more consistent performance. The mean test MSE of ridge regression at the selected penalty \result{cl-alpha} was \result{cl-ridge-mean}, with a low standard deviation (\result{cl-ridge-std}). This reduction in variance suggests that ridge regression is less sensitive to the random initialization of seeds, making it a more reliable choice for our application. The relative reduction in mean test MSE achieved by ridge over OLS was \result{cl-improve}%, indicating a significant improvement in model performance.
+
+Our approach builds upon the foundational work of Hoerl and Kennard \citep{hoerl1970ridge}, who introduced ridge regression as a method to address multicollinearity in linear models. By integrating this method into our multi-agent system, we aim to achieve both the stability and accuracy required for generating high-quality, reproducible research papers. The use of an irreducible noise floor (\result{cl-noise}) as a reference point further underscores the importance of our method in achieving true model performance.

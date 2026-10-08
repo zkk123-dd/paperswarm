@@ -1,0 +1,51 @@
+{
+  "source": "E:\\存放\\agent\\paper-swarm\\src\\paperswarm",
+  "target": "E:\\存放\\agent\\upstream\\jiuwenswarm-develop\\jiuwenswarm\\agents\\paper",
+  "files": [
+    {
+      "name": "__init__.py",
+      "bytes": 1465,
+      "rewritten_refs": 7
+    },
+    {
+      "name": "agentloop.py",
+      "bytes": 21763,
+      "rewritten_refs": 2
+    },
+    {
+      "name": "assemble.py",
+      "bytes": 21791,
+      "rewritten_refs": 4
+    },
+    {
+      "name": "evidence.py",
+      "bytes": 26887,
+      "rewritten_refs": 0
+    },
+    {
+      "name": "lab.py",
+      "bytes": 7174,
+      "rewritten_refs": 0
+    },
+    {
+      "name": "llm.py",
+      "bytes": 16747,
+      "rewritten_refs": 0
+    },
+    {
+      "name": "telemetry.py",
+      "bytes": 9937,
+      "rewritten_refs": 0
+    },
+    {
+      "name": "tex_gate.py",
+      "bytes": 13703,
+      "rewritten_refs": 2
+    },
+    {
+      "name": "tools.py",
+      "bytes": 24363,
+      "rewritten_refs": 4
+    }
+  ]
+}

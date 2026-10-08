@@ -1,0 +1,11 @@
+The proposed system, PaperSwarm, is designed to generate reproducible research papers through a multi-agent approach. This section details the methodology employed, focusing on the experimental setup and the performance metrics used to evaluate the system.
+
+The experiments were conducted on a synthetic dataset, where the design matrix had \result{cl-features} features and \result{cl-train} training samples per split, with \result{cl-test} test samples per split. Each configuration was averaged over \result{cl-seeds} random seeds to ensure robustness. The dataset was generated with an irreducible noise floor of \result{cl-noise}.
+
+Two regression models were compared: ordinary least squares (OLS) and ridge regression. The OLS model was implemented using the minimum-norm solution, which provided a baseline for comparison. The mean test mean squared error (MSE) of the OLS solution, averaged over all seeds, was \result{cl-ols-mean}, with a standard deviation of \result{cl-ols-std} across seeds, indicating high variance.
+
+Ridge regression was used to address the issue of overfitting by introducing a penalty term. The penalty parameter, \result{cl-alpha}, was selected to minimize the mean test MSE, resulting in a mean test MSE of \result{cl-ridge-mean}. The standard deviation of the ridge test MSE across seeds was \result{cl-ridge-std}, showing low variance. The relative reduction in mean test MSE achieved by ridge over OLS was \result{cl-improve}\%, highlighting the effectiveness of the regularization technique.
+
+The performance of the models was compared against an irreducible noise floor of \result{cl-noise}, which served as a reference for the lowest possible error. The results demonstrated that ridge regression outperformed OLS, with a significant reduction in MSE, indicating the importance of regularization in improving model generalization.
+
+These experiments were designed to evaluate the robustness and effectiveness of the multi-agent system in generating reproducible research papers. The results provide a benchmark for future work in automated research paper generation, emphasizing the need for rigorous evaluation methods to ensure the reliability of the generated content.

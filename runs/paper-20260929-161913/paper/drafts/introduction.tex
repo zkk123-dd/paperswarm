@@ -1,0 +1,21 @@
+\subsection{Motivation and Background}
+
+The generation of reproducible research papers is a critical yet challenging task, often marred by inconsistencies and variability in experimental outcomes. To address this, we propose PaperSwarm, an evidence-gated multi-agent system designed to streamline and enhance the reproducibility of research paper generation. The system leverages a decentralized approach, where multiple agents collaborate to generate and verify the content of a paper, ensuring consistency and reliability.
+
+\subsection{Problem Formulation}
+
+Consider a scenario where a machine learning model is trained on a dataset with \result{cl-train} training samples and \result{cl-test} test samples, and the design matrix contains \result{cl-features} features. The performance of the model is evaluated using mean squared error (MSE) as the loss function. In this context, we compare the performance of ordinary least squares (OLS) regression and ridge regression, a regularized version of OLS.
+
+\subsection{Experimental Setup}
+
+We conducted experiments using \result{cl-seeds} random seeds to ensure the robustness of our findings. The OLS solution was computed using the minimum-norm approach, and its performance was measured using the test MSE. The results showed that the OLS solution had a mean test MSE of \result{cl-ols-mean} with a standard deviation of \result{cl-ols-std} across seeds, indicating high variability in its performance.
+
+In contrast, ridge regression was applied with a selected penalty \result{cl-alpha}, which minimized the mean test MSE. The mean test MSE of ridge regression was \result{cl-ridge-mean}, with a standard deviation of \result{cl-ridge-std}, demonstrating lower variability compared to OLS. The relative reduction in mean test MSE achieved by ridge regression over OLS was \result{cl-improve} percent, highlighting the benefits of regularization in reducing model variance.
+
+\subsection{Baseline and Noise Floor}
+
+To provide a baseline for comparison, we considered the irreducible noise floor, represented by the additive noise variance \result{cl-noise}. This value serves as a reference for the minimum achievable MSE, beyond which improvements in model performance are not expected to be significant.
+
+\subsection{Conclusion}
+
+In summary, our experiments demonstrate the importance of regularization in improving the stability and generalization of machine learning models. The results obtained from PaperSwarm provide a robust framework for evaluating different modeling techniques and ensure the reproducibility of research findings. Future work will focus on extending the system to handle more complex models and datasets, further enhancing the reliability of the generated research papers.

@@ -1,0 +1,23 @@
+% 本文件由 paperswarm.tex_gate 从台账自动生成，请勿手工编辑。
+% 每个数值均由证据台账注入：claim_id -> (artifact SHA-256, JSON Pointer)。
+\subsection{Motivation and Background}
+
+The task of generating reproducible research papers, particularly in the context of machine learning, poses significant challenges. Traditional approaches often lack transparency and reproducibility, leading to difficulties in validating the results. To address these issues, we propose \textit{PaperSwarm}, a novel multi-agent system designed to ensure the generation of reproducible and verifiable research papers. The system leverages the collective intelligence of a swarm of agents to collaboratively produce and validate the content of a paper.
+
+\subsection{Problem Statement}
+
+Consider a scenario where a machine learning model is trained on a dataset. The goal is to compare the performance of ordinary least squares (OLS) regression and ridge regression. The OLS solution is known to have a minimum-norm property, but it can be unstable, especially in the presence of multicollinearity. On the other hand, ridge regression, by adding a penalty term to the loss function, can mitigate this issue and often provides better generalization. However, the choice of the penalty parameter in ridge regression is crucial and can significantly affect the model's performance.
+
+\subsection{Experimental Setup}
+
+To evaluate the effectiveness of ridge regression, we conducted experiments on a synthetic dataset. The dataset consists of 120 features and 90 training samples per split, with 200 test samples per split. The experiments were repeated 8 times to ensure robustness. The mean test mean squared error (MSE) of the minimum-norm OLS solution was found to be 0.6198, with a standard deviation of 0.1329. This high variance indicates that the OLS solution can be unstable.
+
+In contrast, ridge regression was tuned to find the penalty parameter that minimizes the mean test MSE. The selected penalty, 0.1, achieved a mean test MSE of 0.3041, with a standard deviation of 0.0623. The relative reduction in mean test MSE achieved by ridge regression over OLS was 50.94\%, demonstrating the benefits of regularization.
+
+\subsection{Reference Noise Floor}
+
+To provide a baseline for comparison, we also estimated the irreducible noise floor, 0.1225, which represents the minimum achievable MSE given the inherent noise in the data. This value serves as a reference to gauge the performance of the models.
+
+\subsection{Conclusion}
+
+The experiments clearly illustrate the advantages of ridge regression over OLS in terms of stability and generalization. The high variance of the OLS solution, as evidenced by the standard deviation of 0.1329, highlights the need for regularization techniques. The results reported here are consistent across multiple random seeds, ensuring the reliability of the findings. These insights are critical for advancing the field of machine learning and promoting reproducibility in research.

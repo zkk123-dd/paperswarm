@@ -1,0 +1,13 @@
+% 本文件由 paperswarm.tex_gate 从台账自动生成，请勿手工编辑。
+% 每个数值均由证据台账注入：claim_id -> (artifact SHA-256, JSON Pointer)。
+\subsection{Experiments}
+
+This section presents the experimental results comparing the performance of the minimum-norm Ordinary Least Squares (OLS) solution and ridge regression in the context of PaperSwarm. The experiments were conducted using a dataset with 120 features and 90 training samples per split, with 200 test samples reserved for evaluation. The performance was assessed using mean squared error (MSE) on the test set, averaged over 8 random seeds.
+
+The mean test MSE of the minimum-norm OLS solution, averaged over all seeds, was 0.6198. The standard deviation of the OLS test MSE across seeds exhibited high variance, as indicated by 0.1329. In contrast, the ridge regression model demonstrated more consistent performance, with a mean test MSE of 0.3041. The standard deviation of the ridge test MSE was lower, reflecting the model's reduced variance, as shown by 0.0623.
+
+The relative reduction in mean test MSE achieved by ridge regression over the OLS solution was 50.94\%. This improvement highlights the effectiveness of ridge regression in mitigating the variance of the OLS solution, thereby enhancing the overall performance. The selected ridge penalty (alpha) that achieved the lowest mean test MSE was 0.1.
+
+To provide a baseline for comparison, the irreducible noise floor, represented by the additive noise variance, was set to 0.1225. This value serves as a reference for the minimum achievable MSE, indicating the inherent noise in the data that cannot be reduced by any model.
+
+These results collectively demonstrate the benefits of using ridge regression over OLS in terms of both mean performance and variance reduction. The consistent performance of ridge regression, as evidenced by the lower standard deviation, suggests its potential for more reliable and reproducible results. Future work may explore further optimization techniques to reduce the noise floor and improve the overall performance of the models.

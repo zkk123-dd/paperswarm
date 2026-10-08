@@ -1,0 +1,13 @@
+﻿python.exe : Validating Swarm Skill: E:\瀛樻斁\agent\upstream\jiuwenswarm-develop\
+jiuwenswarm\resources\agent\workspace\skills\paper-repro-swarm
+所在位置 行:445 字符: 8
++ $out = & "C:\Users\周凯\.workbuddy\binaries\python\envs\default\Scripts ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Validating Swar...per-repro-swarm 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+
+[PASS] 0 warning(s), 0 error(s).
+

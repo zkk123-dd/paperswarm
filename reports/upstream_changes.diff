@@ -1,0 +1,220 @@
+--- a/jiuwenswarm/agents/swarm/registry.py
++++ b/jiuwenswarm/agents/swarm/registry.py
+@@ -51,6 +51,7 @@
+     code_subagents as _code_subagents,
+     evolution_rails as _evolution_rails,
+     member_rails as _member_rails,
++    paper_providers as _paper_providers,
+     runtime_tools as _runtime_tools,
+     skills as _skills,
+     tools as _tools,
+@@ -71,6 +72,14 @@
+ CRON_TOOLS = _runtime_tools.CRON_TOOLS
+ SEND_FILE = _runtime_tools.SEND_FILE
+ MEMBER_SKILL_TOOLKIT = _skills.MEMBER_SKILL_TOOLKIT
++# Paper-capability providers (evidence-gated paper generation). Both the tools and
++# the rails are only *declared* here; whether a given team member actually gets them
++# is decided by config_specs from the ``paper_swarm`` config section, so a team that
++# does not opt in keeps exactly its previous element set.
++PAPER_LEDGER_TOOLS = _paper_providers.PAPER_LEDGER_TOOLS
++PAPER_ASSEMBLER_TOOLS = _paper_providers.PAPER_ASSEMBLER_TOOLS
++PAPER_PROTOCOL_PROMPT = _paper_providers.PAPER_PROTOCOL_PROMPT
++PAPER_GATE_AUDIT = _paper_providers.PAPER_GATE_AUDIT
+ # Generic tools provided + registered by openjiuwen (referenced by bare name).
+ WEB_SEARCH = _OJ_WEB_SEARCH
+ WEB_FETCH = _OJ_WEB_FETCH
+@@ -203,6 +212,10 @@
+     "CRON_TOOLS",
+     "SEND_FILE",
+     "MEMBER_SKILL_TOOLKIT",
++    "PAPER_LEDGER_TOOLS",
++    "PAPER_ASSEMBLER_TOOLS",
++    "PAPER_PROTOCOL_PROMPT",
++    "PAPER_GATE_AUDIT",
+     "RUNTIME_PROMPT",
+     "TEAM_SKILL_STORAGE_POLICY",
+     "TEAM_SKILL_LIBRARY_RELOAD",
+
+--- a/jiuwenswarm/agents/swarm/config_specs.py
++++ b/jiuwenswarm/agents/swarm/config_specs.py
+@@ -434,6 +434,105 @@
+     }
+ 
+ 
++# ---------------------------------------------------------------------------
++# Paper-capability specs (opt-in via the ``paper_swarm`` config section).
++#
++# These elements are deliberately NOT added to ``_COMMON_RAIL_NAMES`` /
++# ``_COMMON_TOOL_NAMES``. Those two tuples define the *default* member profile and
++# the assembly regression tests assert them as exact sets; a capability that is off
++# for every team that has not opted in must not widen them. Instead the paper specs
++# are appended only when ``paper_swarm.enabled`` is true, so a default team builds
++# exactly the same element set as before this change.
++#
++# Ordering note: the paper rails go *after* the evolution rails, because evolution
++# rails may rewrite the member prompt and the evidence protocol must win.
++# ---------------------------------------------------------------------------
++
++_PAPER_RAIL_NAMES: tuple[str, ...] = (
++    registry.PAPER_PROTOCOL_PROMPT,
++    registry.PAPER_GATE_AUDIT,
++)
++
++_PAPER_TOOL_NAMES: tuple[str, ...] = (
++    registry.PAPER_LEDGER_TOOLS,
++    registry.PAPER_ASSEMBLER_TOOLS,
++)
++
++#: The canonical ICLR-style section order used when the config omits ``sections``.
++_PAPER_DEFAULT_SECTIONS: tuple[tuple[str, str], ...] = (
++    ("introduction", "Introduction"),
++    ("related_work", "Related Work"),
++    ("method", "Method"),
++    ("experiments", "Experiments"),
++    ("discussion", "Discussion"),
++    ("conclusion", "Conclusion"),
++)
++
++
++def _paper_swarm_section(config: dict[str, Any]) -> dict[str, Any]:
++    """Return the ``paper_swarm`` config section as a dict (empty when absent)."""
++    section = (config or {}).get("paper_swarm", {})
++    return section if isinstance(section, dict) else {}
++
++
++def _paper_swarm_enabled(config: dict[str, Any]) -> bool:
++    """Return whether the paper capability is switched on for this config."""
++    return bool(_paper_swarm_section(config).get("enabled", False))
++
++
++def _paper_sections(config: dict[str, Any]) -> list[list[str]]:
++    """Resolve the section order, tolerating a malformed entry by falling back.
++
++    Each entry must be a two-element sequence ``[stem, Title]``. Anything else is
++    dropped rather than raising: a bad config must not fail team assembly.
++    """
++    raw = _paper_swarm_section(config).get("sections")
++    if not isinstance(raw, (list, tuple)):
++        return [list(item) for item in _PAPER_DEFAULT_SECTIONS]
++    cleaned: list[list[str]] = []
++    for entry in raw:
++        if isinstance(entry, (list, tuple)) and len(entry) >= 2:
++            stem, title = str(entry[0]).strip(), str(entry[1]).strip()
++            if stem and title:
++                cleaned.append([stem, title])
++    return cleaned or [list(item) for item in _PAPER_DEFAULT_SECTIONS]
++
++
++def _paper_common_params(config: dict[str, Any]) -> dict[str, Any]:
++    """Attribute params shared by every paper element."""
++    section = _paper_swarm_section(config)
++    return {"sections_subdir": str(section.get("sections_subdir") or "sections")}
++
++
++def _paper_ledger_tool_params(config: dict[str, Any]) -> dict[str, Any]:
++    """Attribute params for the evidence-ledger toolset."""
++    params = _paper_common_params(config)
++    params["compact"] = bool(_paper_swarm_section(config).get("compact", True))
++    return params
++
++
++def _paper_assembler_tool_params(config: dict[str, Any]) -> dict[str, Any]:
++    """Attribute params for the assembly/compile toolset (paths + title + order)."""
++    section = _paper_swarm_section(config)
++    params = _paper_common_params(config)
++    params.update(
++        {
++            "template_dir": str(section.get("template_dir") or ""),
++            "tectonic_path": str(section.get("tectonic_path") or ""),
++            "bundle_path": str(section.get("bundle_path") or ""),
++            "cache_dir": str(section.get("cache_dir") or ""),
++            "pdf_title": str(section.get("title") or ""),
++            "sections": _paper_sections(config),
++        }
++    )
++    return params
++
++
++def _paper_rail_params(config: dict[str, Any]) -> dict[str, Any]:
++    """Attribute params for both paper rails (they only need the sections dir)."""
++    return _paper_common_params(config)
++
++
+ # Per-element attribute params, keyed by provider name; empty for parameterless.
+ _RAIL_PARAM_BUILDERS: dict[str, Callable[[dict[str, Any]], dict[str, Any]]] = {
+     registry.CONTEXT_PROCESSOR: _context_processor_params,
+@@ -453,6 +552,8 @@
+     },
+     registry.USER_HOOKS: lambda c: {"hooks_section": _config_section(c, "hooks")},
+     registry.CODE_WORKTREE: lambda c: {"enabled": True},
++    registry.PAPER_PROTOCOL_PROMPT: _paper_rail_params,
++    registry.PAPER_GATE_AUDIT: _paper_rail_params,
+ }
+ 
+ 
+@@ -474,6 +575,8 @@
+     registry.CODE_EXTRA_TOOLS: lambda c: {"acp_enabled": _acp_enabled(c)},
+     registry.VISION: _vision_tool_params,
+     registry.AUDIO: _audio_tool_params,
++    registry.PAPER_LEDGER_TOOLS: _paper_ledger_tool_params,
++    registry.PAPER_ASSEMBLER_TOOLS: _paper_assembler_tool_params,
+ }
+ 
+ 
+@@ -487,6 +590,33 @@
+     """Return attribute params baked into tool *name* (empty when parameterless)."""
+     builder = _TOOL_PARAM_BUILDERS.get(name)
+     return builder(config) if builder else {}
++
++
++def _paper_capability_specs(
++    config: dict[str, Any],
++) -> tuple[list[RailSpec], list[BuiltinToolSpec]]:
++    """Build the opt-in paper capability specs.
++
++    Returns empty lists unless ``paper_swarm.enabled`` is true, so a team that has not
++    opted in keeps exactly the element set it had before this capability existed.
++
++    Args:
++        config: The resolved ``config.yaml`` mapping.
++
++    Returns:
++        A ``(rails_specs, tool_specs)`` tuple, both empty when the gate is closed.
++    """
++    if not _paper_swarm_enabled(config):
++        return [], []
++    rails_specs = [
++        RailSpec(type=name, params=_rail_params(name, config))
++        for name in _PAPER_RAIL_NAMES
++    ]
++    tool_specs = [
++        BuiltinToolSpec(type=name, params=_tool_params(name, config))
++        for name in _PAPER_TOOL_NAMES
++    ]
++    return rails_specs, tool_specs
+ 
+ 
+ def _team_common_rail_names(role: str) -> tuple[str, ...]:
+@@ -591,6 +721,11 @@
+         BuiltinToolSpec(type=name, params=_tool_params(name, config))
+         for name in _COMMON_TOOL_NAMES
+     ]
++    # Opt-in paper capability; appended after the evolution rails so the evidence
++    # protocol prompt wins over any evolution-rail prompt rewriting.
++    paper_rails, paper_tools = _paper_capability_specs(config)
++    rails_specs.extend(paper_rails)
++    tool_specs.extend(paper_tools)
+     return rails_specs, tool_specs
+ 
+ 
+@@ -659,6 +794,10 @@
+         BuiltinToolSpec(type=name, params=_tool_params(name, config))
+         for name in _CODE_TOOL_NAMES
+     ]
++    # Opt-in paper capability (same contract as the chat-team profile).
++    paper_rails, paper_tools = _paper_capability_specs(config)
++    rails_specs.extend(paper_rails)
++    tool_specs.extend(paper_tools)
+     return rails_specs, tool_specs
+ 
+ 

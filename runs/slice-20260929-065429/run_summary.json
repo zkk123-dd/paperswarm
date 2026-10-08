@@ -1,0 +1,48 @@
+{
+  "agent_steps": 4,
+  "artifact_sha256": "4f2b96ead9f19d938fe29f3cf89b432511e79531614f80c14a123d0407db8b0b",
+  "by_model": {
+    "qwen2.5:7b-instruct-q4_K_M": {
+      "calls": 4,
+      "latency_ms": 49735,
+      "tokens": 13401
+    }
+  },
+  "by_role": {
+    "writer": {
+      "calls": 4,
+      "latency_ms": 49735,
+      "tokens": 13401
+    }
+  },
+  "by_span": {
+    "writer.results": {
+      "calls": 4,
+      "latency_ms": 49735,
+      "tokens": 13401
+    }
+  },
+  "calls": 4,
+  "calls_failed": 0,
+  "calls_ok": 4,
+  "claims_passed": 5,
+  "claims_total": 5,
+  "completion_tokens": 1753,
+  "cost_basis": "priced",
+  "cost_usd_total": 0.0,
+  "events": 3,
+  "experiment_wall_seconds": 0.0175,
+  "gate_ok": true,
+  "latency_ms_p50": 13782.0,
+  "latency_ms_p95": 15059,
+  "latency_ms_total": 49735,
+  "mode": "agent",
+  "prompt_tokens": 11648,
+  "retries_total": 0,
+  "root": "E:\\存放\\agent\\paper-swarm\\runs\\slice-20260929-065429",
+  "run_id": "slice-20260929-065429",
+  "stop_reason": "final_answer",
+  "success_rate": 1.0,
+  "tool_calls_total": 6,
+  "total_tokens": 13401
+}

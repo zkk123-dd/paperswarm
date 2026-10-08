@@ -1,0 +1,2 @@
+﻿ollama_status=200
+{"models":[{"name":"qwen2.5:7b-instruct-q4_K_M","model":"qwen2.5:7b-instruct-q4_K_M","modified_at":"2026-09-04T17:24:07.4886015+08:00","size":4683087332,"digest":"845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e","details":{"parent_model":"","format":"gguf","family":"qwen2","families":["qwen2"],"parameter_size":"7.6B","quantization_level":"Q4_K_M","context_length":32768,"embedding_length":3584},"capabilities":["completion","tools"]}]}

@@ -1,0 +1,4 @@
+﻿Tectonic 0.16.9
+
+bundle: 1794017450
+tectonic exe size: 49630208

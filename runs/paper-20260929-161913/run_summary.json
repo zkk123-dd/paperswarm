@@ -1,0 +1,112 @@
+{
+  "by_model": {
+    "qwen2.5:7b-instruct-q4_K_M": {
+      "calls": 8,
+      "latency_ms": 98091,
+      "tokens": 10318
+    }
+  },
+  "by_role": {
+    "writer.abstract": {
+      "calls": 1,
+      "latency_ms": 7253,
+      "tokens": 2375
+    },
+    "writer.conclusion": {
+      "calls": 2,
+      "latency_ms": 19209,
+      "tokens": 2349
+    },
+    "writer.discuss": {
+      "calls": 1,
+      "latency_ms": 12800,
+      "tokens": 1079
+    },
+    "writer.exp": {
+      "calls": 1,
+      "latency_ms": 14886,
+      "tokens": 1212
+    },
+    "writer.intro": {
+      "calls": 1,
+      "latency_ms": 19628,
+      "tokens": 1166
+    },
+    "writer.method": {
+      "calls": 1,
+      "latency_ms": 12165,
+      "tokens": 1066
+    },
+    "writer.related": {
+      "calls": 1,
+      "latency_ms": 12150,
+      "tokens": 1071
+    }
+  },
+  "by_span": {
+    "writer.abstract": {
+      "calls": 1,
+      "latency_ms": 7253,
+      "tokens": 2375
+    },
+    "writer.conclusion": {
+      "calls": 2,
+      "latency_ms": 19209,
+      "tokens": 2349
+    },
+    "writer.discussion": {
+      "calls": 1,
+      "latency_ms": 12800,
+      "tokens": 1079
+    },
+    "writer.experiments": {
+      "calls": 1,
+      "latency_ms": 14886,
+      "tokens": 1212
+    },
+    "writer.introduction": {
+      "calls": 1,
+      "latency_ms": 19628,
+      "tokens": 1166
+    },
+    "writer.method": {
+      "calls": 1,
+      "latency_ms": 12165,
+      "tokens": 1066
+    },
+    "writer.related_work": {
+      "calls": 1,
+      "latency_ms": 12150,
+      "tokens": 1071
+    }
+  },
+  "calls": 8,
+  "calls_failed": 0,
+  "calls_ok": 8,
+  "completion_tokens": 3207,
+  "cost_basis": "priced",
+  "cost_usd_total": 0.0,
+  "events": 9,
+  "experiment_seconds": 0.498,
+  "latency_ms_p50": 12157.5,
+  "latency_ms_p95": 19628,
+  "latency_ms_total": 98091,
+  "ok": true,
+  "pdf": {
+    "page_limit": 9,
+    "pages": 4,
+    "pages_ok": true,
+    "path": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\main.pdf",
+    "size_bytes": 34498,
+    "size_limit_bytes": 10485760,
+    "size_mb": 0.033,
+    "size_ok": true
+  },
+  "prompt_tokens": 7111,
+  "retries_total": 0,
+  "root": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913",
+  "run_id": "paper-20260929-161913",
+  "success_rate": 1.0,
+  "tool_calls_total": 0,
+  "total_tokens": 10318
+}

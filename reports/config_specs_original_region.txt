@@ -1,0 +1,110 @@
+﻿matched members: ['jiuwenswarm-develop/jiuwenswarm/agents/swarm/config_specs.py']
+--- around line 438 ---
+  437| # Per-element attribute params, keyed by provider name; empty for parameterless.
+  438| _RAIL_PARAM_BUILDERS: dict[str, Callable[[dict[str, Any]], dict[str, Any]]] = {
+  439|     registry.CONTEXT_PROCESSOR: _context_processor_params,
+  440|     registry.MODEL_ANOMALY_DETECTION: _model_anomaly_detection_params,
+  441|     registry.CODE_PROJECT_MEMORY: lambda c: {
+  442|         "additional_directories": _additional_directories(c)
+  443|     },
+  444|     registry.PERMISSION_INTERRUPT: _permission_params,
+  445|     registry.TEAM_PERMISSION: lambda c: {
+  446|         "permissions_config": _config_section(c, "permissions"),
+  447|     },
+  448|     registry.TEAM_PERMISSION_POLICY: lambda c: {
+  449|         "permissions_config": _config_section(c, "permissions"),
+  450|     },
+  451|     registry.CODE_CODING_MEMORY: lambda c: {
+  452|         "embed_config": _config_section(c, "embed")
+  453|     },
+  454|     registry.USER_HOOKS: lambda c: {"hooks_section": _config_section(c, "hooks")},
+  455|     registry.CODE_WORKTREE: lambda c: {"enabled": True},
+  456| }
+  457| 
+  458| 
+  459| def _vision_tool_params(config: dict[str, Any]) -> dict[str, Any]:
+  460|     """Bake the core vision element's VisionModelConfig kwargs (empty disables it)."""
+  461|     return {"vision_model_config": _tools.vision_model_config_params(config)}
+  462| 
+--- around line 472 ---
+  471| 
+  472| _TOOL_PARAM_BUILDERS: dict[str, Callable[[dict[str, Any]], dict[str, Any]]] = {
+  473|     registry.SEND_FILE: lambda c: {"channels_config": _config_section(c, "channels")},
+  474|     registry.CODE_EXTRA_TOOLS: lambda c: {"acp_enabled": _acp_enabled(c)},
+  475|     registry.VISION: _vision_tool_params,
+  476|     registry.AUDIO: _audio_tool_params,
+  477| }
+  478| 
+  479| 
+  480| def _rail_params(name: str, config: dict[str, Any]) -> dict[str, Any]:
+  481|     """Return attribute params baked into rail *name* (empty when parameterless)."""
+  482|     builder = _RAIL_PARAM_BUILDERS.get(name)
+  483|     return builder(config) if builder else {}
+  484| 
+  485| 
+  486| def _tool_params(name: str, config: dict[str, Any]) -> dict[str, Any]:
+  487|     """Return attribute params baked into tool *name* (empty when parameterless)."""
+  488|     builder = _TOOL_PARAM_BUILDERS.get(name)
+  489|     return builder(config) if builder else {}
+  490| 
+  491| 
+  492| def _team_common_rail_names(role: str) -> tuple[str, ...]:
+  493|     """Shared chat-team rails; leaders omit harness todo planning."""
+  494|     if role == "leader":
+  495|         return tuple(
+  496|             name for name in _COMMON_RAIL_NAMES if name != registry.TASK_PLANNING
+--- around line 482 ---
+  481|     """Return attribute params baked into rail *name* (empty when parameterless)."""
+  482|     builder = _RAIL_PARAM_BUILDERS.get(name)
+  483|     return builder(config) if builder else {}
+  484| 
+  485| 
+  486| def _tool_params(name: str, config: dict[str, Any]) -> dict[str, Any]:
+  487|     """Return attribute params baked into tool *name* (empty when parameterless)."""
+  488|     builder = _TOOL_PARAM_BUILDERS.get(name)
+  489|     return builder(config) if builder else {}
+  490| 
+  491| 
+  492| def _team_common_rail_names(role: str) -> tuple[str, ...]:
+  493|     """Shared chat-team rails; leaders omit harness todo planning."""
+  494|     if role == "leader":
+  495|         return tuple(
+  496|             name for name in _COMMON_RAIL_NAMES if name != registry.TASK_PLANNING
+  497|         )
+  498|     return _COMMON_RAIL_NAMES
+  499| 
+  500| 
+  501| def _code_base_rail_names(role: str) -> tuple[str, ...]:
+  502|     """Code-profile rails minus permission interrupt; leaders omit code todo planning.
+  503| 
+  504|     ``PERMISSION_INTERRUPT`` is excluded for all team members: it relies on a
+  505|     frontend user response that headless teammates cannot provide, and even the
+  506|     leader's interrupt path is unreliable in a team context.
+--- around line 488 ---
+  487|     """Return attribute params baked into tool *name* (empty when parameterless)."""
+  488|     builder = _TOOL_PARAM_BUILDERS.get(name)
+  489|     return builder(config) if builder else {}
+  490| 
+  491| 
+  492| def _team_common_rail_names(role: str) -> tuple[str, ...]:
+  493|     """Shared chat-team rails; leaders omit harness todo planning."""
+  494|     if role == "leader":
+  495|         return tuple(
+  496|             name for name in _COMMON_RAIL_NAMES if name != registry.TASK_PLANNING
+  497|         )
+  498|     return _COMMON_RAIL_NAMES
+  499| 
+  500| 
+  501| def _code_base_rail_names(role: str) -> tuple[str, ...]:
+  502|     """Code-profile rails minus permission interrupt; leaders omit code todo planning.
+  503| 
+  504|     ``PERMISSION_INTERRUPT`` is excluded for all team members: it relies on a
+  505|     frontend user response that headless teammates cannot provide, and even the
+  506|     leader's interrupt path is unreliable in a team context.
+  507|     """
+  508|     names = tuple(
+  509|         name for name in _CODE_RAIL_NAMES if name != registry.PERMISSION_INTERRUPT
+  510|     )
+  511|     if role == "leader":
+  512|         return tuple(name for name in names if name != registry.CODE_TASK_PLANNING)
+

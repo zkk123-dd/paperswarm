@@ -1,0 +1,46 @@
+verification pass @ 2026-09-29T16:44:40+08:00
+
+===== 1. py_compile (src/scripts/tests/integration) =====
+OK
+
+===== 2. tests/test_evidence.py =====
+PASS  test_unknown_claim_id_blocks_gate
+
+9/9 passed
+
+===== 3. tests/test_kernel_offline.py =====
+PASS  prose_accepts_harmless_subsection
+
+96/96 passed
+
+===== 4. scripts/verify_swarmflow_dryrun.py =====
+  [OK  ] degraded_status: status=degraded
+  [OK  ] degraded_skips_audit: 组装失败时不得运行审计（没有 PDF 可审）
+  [OK  ] degraded_reports_unresolved: must_fix=['cl-ols-mean']
+
+===== 5. scripts/verify_vendored_kernel.py =====
+
+===== 6. pytest integration/test_paper_providers_contract.py =====
+.................                                                        [100%]
+17 passed in 1.35s
+
+===== 7. scripts/token_report.py =====
+runs=12 calls=61 tokens=119921 cost_basis=partially_priced cost_usd=0.0
+report -> E:\存放\agent\paper-swarm\reports\token_report.json
+report -> E:\存放\agent\paper-swarm\reports\token_report.md
+
+===== 8. scripts/review_readiness.py =====
+  [PASS] analyzed_pages_within_15
+  [PASS] english_language
+  [PASS] anonymized_for_double_blind
+  [PASS] no_unresolved_result_macro
+  [PASS] first_page_has_content
+PASS 8 / WARN 0 / FAIL 0
+report -> E:\存放\agent\paper-swarm\reports\review_readiness.json
+report -> E:\存放\agent\paper-swarm\reports\review_readiness.md
+
+===== 5b. verify_vendored_kernel.py (完整) =====
+exit=0
+
+===== 4b. verify_swarmflow_dryrun.py 计数 =====
+16

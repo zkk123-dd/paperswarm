@@ -1,0 +1,67 @@
+# PaperSwarm 模型后端配置
+#
+# 密钥一律通过 *_env 间接引用，绝不把明文写进本文件。
+# 使用方式：
+#   LLMConfig.from_yaml("configs/model.yaml", profile="local-ollama")
+#
+# 已核实事实（2026-09-29 实测于本机）：
+#   Ollama 0.34.4 在 127.0.0.1:11434 提供服务，OpenAI 兼容端点 /v1/chat/completions
+#   可用；qwen2.5:7b-instruct-q4_K_M 报告 capabilities=["completion","tools"]，
+#   实测 function calling 正常返回 tool_calls（finish_reason=tool_calls）。
+#   生成吞吐实测约 30.6 tok/s（169 completion tokens / 5.53s），上下文长度 32768。
+
+# 本机 Ollama：零边际成本，用于竖切片、离线回归与资源台账。
+# 边际成本显式记为 0.0 而非"未定价"——这是已知事实，不是未知量。
+local-ollama:
+  base_url: http://127.0.0.1:11434/v1
+  model: qwen2.5:7b-instruct-q4_K_M
+  api_key_env: PAPER_LLM_API_KEY
+  connect_timeout: 10.0
+  read_timeout: 300.0
+  max_retries: 3
+  backoff_base: 1.5
+  backoff_cap: 20.0
+  temperature: 0.2
+  max_tokens: 2048
+  price_per_1k_prompt: 0.0
+  price_per_1k_completion: 0.0
+
+# DeepSeek 官方 API：正文写作与对抗审稿用。
+# 已核实事实（2026-10-08 本机实测）：
+#   GET https://api.deepseek.com/v1/models 返回 200，
+#   可用模型 id 为 deepseek-v4-pro 与 deepseek-flash，两者 context_window=1048576、
+#   max_output_tokens=393216；deepseek-v4-pro 支持 reasoning（响应里含
+#   reasoning_content 字段，计入 completion_tokens）。
+#   实测 POST /v1/chat/completions 往返约 1.0s（极短请求）。
+# 选型理由：正文生成是唯一需要真实语言能力的环节；机械步骤仍走 local-ollama，
+# 保证边际成本为 0 且离线可回归。
+cloud-deepseek:
+  base_url: https://api.deepseek.com/v1
+  model: deepseek-v4-pro
+  api_key_env: PAPER_LLM_API_KEY
+  connect_timeout: 10.0
+  # 推理模型会先产 reasoning_content，再产正文；读超时按最坏情况放宽。
+  read_timeout: 600.0
+  max_retries: 3
+  backoff_base: 1.5
+  backoff_cap: 20.0
+  temperature: 0.2
+  max_tokens: 8192
+  # price_per_1k_prompt: [待核实] 需查 https://api-docs.deepseek.com/quick_start/pricing
+  # price_per_1k_completion: [待核实] 同上；未核实前资源报告只记 token 数，不折算金额。
+
+# 云服务模板：换其它 OpenAI 兼容后端时照抄本块，把 base_url / model 换成
+# 官方文档给出的值再启用。严禁凭记忆填单价。
+cloud-openai-compatible:
+  base_url: https://REPLACE-ME/v1
+  model: REPLACE-ME
+  api_key_env: PAPER_LLM_API_KEY
+  connect_timeout: 10.0
+  read_timeout: 300.0
+  max_retries: 3
+  backoff_base: 1.5
+  backoff_cap: 20.0
+  temperature: 0.2
+  max_tokens: 4096
+  # price_per_1k_prompt: 0.0      # [待核实: 查该平台官方定价页]
+  # price_per_1k_completion: 0.0  # [待核实: 查该平台官方定价页]

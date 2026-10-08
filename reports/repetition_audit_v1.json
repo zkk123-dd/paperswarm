@@ -1,0 +1,432 @@
+{
+  "directory": "runs\\paper-20260929-164239\\paper\\drafts",
+  "ngram": 4,
+  "thresholds": {
+    "max_pairwise_containment": 0.25,
+    "max_claim_section_spread": 3,
+    "min_type_token_ratio": 0.45
+  },
+  "sections": [
+    {
+      "name": "abstract",
+      "word_count": 91,
+      "type_token_ratio": 0.7692,
+      "result_macro_occurrences": 7,
+      "distinct_result_macros": 7
+    },
+    {
+      "name": "conclusion",
+      "word_count": 86,
+      "type_token_ratio": 0.8605,
+      "result_macro_occurrences": 8,
+      "distinct_result_macros": 8
+    },
+    {
+      "name": "discussion",
+      "word_count": 169,
+      "type_token_ratio": 0.716,
+      "result_macro_occurrences": 11,
+      "distinct_result_macros": 11
+    },
+    {
+      "name": "experiments",
+      "word_count": 163,
+      "type_token_ratio": 0.7423,
+      "result_macro_occurrences": 11,
+      "distinct_result_macros": 11
+    },
+    {
+      "name": "introduction",
+      "word_count": 162,
+      "type_token_ratio": 0.7593,
+      "result_macro_occurrences": 10,
+      "distinct_result_macros": 10
+    },
+    {
+      "name": "method",
+      "word_count": 184,
+      "type_token_ratio": 0.6033,
+      "result_macro_occurrences": 12,
+      "distinct_result_macros": 11
+    },
+    {
+      "name": "related_work",
+      "word_count": 139,
+      "type_token_ratio": 0.7626,
+      "result_macro_occurrences": 11,
+      "distinct_result_macros": 11
+    }
+  ],
+  "pairwise": [
+    {
+      "left": "abstract",
+      "right": "conclusion",
+      "shared_ngrams": 18,
+      "containment": 0.2169,
+      "left_ngrams": 88,
+      "right_ngrams": 83,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "method",
+      "shared_ngrams": 14,
+      "containment": 0.1591,
+      "left_ngrams": 88,
+      "right_ngrams": 181,
+      "verdict": "ok"
+    },
+    {
+      "left": "method",
+      "right": "related_work",
+      "shared_ngrams": 19,
+      "containment": 0.1397,
+      "left_ngrams": 181,
+      "right_ngrams": 136,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "discussion",
+      "shared_ngrams": 12,
+      "containment": 0.1364,
+      "left_ngrams": 88,
+      "right_ngrams": 166,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "discussion",
+      "shared_ngrams": 10,
+      "containment": 0.1205,
+      "left_ngrams": 83,
+      "right_ngrams": 166,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "introduction",
+      "shared_ngrams": 10,
+      "containment": 0.1136,
+      "left_ngrams": 88,
+      "right_ngrams": 159,
+      "verdict": "ok"
+    },
+    {
+      "left": "discussion",
+      "right": "method",
+      "shared_ngrams": 17,
+      "containment": 0.1024,
+      "left_ngrams": 166,
+      "right_ngrams": 181,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "experiments",
+      "shared_ngrams": 8,
+      "containment": 0.0964,
+      "left_ngrams": 83,
+      "right_ngrams": 160,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "experiments",
+      "shared_ngrams": 8,
+      "containment": 0.0909,
+      "left_ngrams": 88,
+      "right_ngrams": 160,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "introduction",
+      "shared_ngrams": 7,
+      "containment": 0.0843,
+      "left_ngrams": 83,
+      "right_ngrams": 159,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "method",
+      "shared_ngrams": 7,
+      "containment": 0.0843,
+      "left_ngrams": 83,
+      "right_ngrams": 181,
+      "verdict": "ok"
+    },
+    {
+      "left": "introduction",
+      "right": "method",
+      "shared_ngrams": 12,
+      "containment": 0.0755,
+      "left_ngrams": 159,
+      "right_ngrams": 181,
+      "verdict": "ok"
+    },
+    {
+      "left": "discussion",
+      "right": "related_work",
+      "shared_ngrams": 10,
+      "containment": 0.0735,
+      "left_ngrams": 166,
+      "right_ngrams": 136,
+      "verdict": "ok"
+    },
+    {
+      "left": "discussion",
+      "right": "experiments",
+      "shared_ngrams": 10,
+      "containment": 0.0625,
+      "left_ngrams": 166,
+      "right_ngrams": 160,
+      "verdict": "ok"
+    },
+    {
+      "left": "experiments",
+      "right": "method",
+      "shared_ngrams": 10,
+      "containment": 0.0625,
+      "left_ngrams": 160,
+      "right_ngrams": 181,
+      "verdict": "ok"
+    },
+    {
+      "left": "experiments",
+      "right": "introduction",
+      "shared_ngrams": 7,
+      "containment": 0.044,
+      "left_ngrams": 160,
+      "right_ngrams": 159,
+      "verdict": "ok"
+    },
+    {
+      "left": "discussion",
+      "right": "introduction",
+      "shared_ngrams": 6,
+      "containment": 0.0377,
+      "left_ngrams": 166,
+      "right_ngrams": 159,
+      "verdict": "ok"
+    },
+    {
+      "left": "experiments",
+      "right": "related_work",
+      "shared_ngrams": 5,
+      "containment": 0.0368,
+      "left_ngrams": 160,
+      "right_ngrams": 136,
+      "verdict": "ok"
+    },
+    {
+      "left": "conclusion",
+      "right": "related_work",
+      "shared_ngrams": 3,
+      "containment": 0.0361,
+      "left_ngrams": 83,
+      "right_ngrams": 136,
+      "verdict": "ok"
+    },
+    {
+      "left": "abstract",
+      "right": "related_work",
+      "shared_ngrams": 3,
+      "containment": 0.0341,
+      "left_ngrams": 88,
+      "right_ngrams": 136,
+      "verdict": "ok"
+    },
+    {
+      "left": "introduction",
+      "right": "related_work",
+      "shared_ngrams": 3,
+      "containment": 0.0221,
+      "left_ngrams": 159,
+      "right_ngrams": 136,
+      "verdict": "ok"
+    }
+  ],
+  "claim_macros": [
+    {
+      "claim_id": "cl-alpha",
+      "occurrences": 8,
+      "sections": [
+        "abstract",
+        "conclusion",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 7,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-features",
+      "occurrences": 7,
+      "sections": [
+        "abstract",
+        "conclusion",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 7,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-improve",
+      "occurrences": 7,
+      "sections": [
+        "abstract",
+        "conclusion",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 7,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-ols-std",
+      "occurrences": 7,
+      "sections": [
+        "abstract",
+        "conclusion",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 7,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-train",
+      "occurrences": 7,
+      "sections": [
+        "abstract",
+        "conclusion",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 7,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-noise",
+      "occurrences": 6,
+      "sections": [
+        "conclusion",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 6,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-ols-mean",
+      "occurrences": 6,
+      "sections": [
+        "abstract",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 6,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-ridge-mean",
+      "occurrences": 6,
+      "sections": [
+        "abstract",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 6,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-ridge-std",
+      "occurrences": 6,
+      "sections": [
+        "conclusion",
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 6,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-seeds",
+      "occurrences": 5,
+      "sections": [
+        "conclusion",
+        "discussion",
+        "experiments",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 5,
+      "verdict": "OVER-REPEATED"
+    },
+    {
+      "claim_id": "cl-test",
+      "occurrences": 5,
+      "sections": [
+        "discussion",
+        "experiments",
+        "introduction",
+        "method",
+        "related_work"
+      ],
+      "section_spread": 5,
+      "verdict": "OVER-REPEATED"
+    }
+  ],
+  "totals": {
+    "sections": 7,
+    "result_macro_occurrences": 70,
+    "distinct_result_macros": 11,
+    "trace_macros": 0,
+    "reportable_macros": 11,
+    "repeated_claim_occurrences": 59
+  },
+  "failures": [
+    "数值重复：cl-alpha 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-features 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-improve 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-ols-std 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-train 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-noise 在 6 个章节出现 (>3)：conclusion, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-ols-mean 在 6 个章节出现 (>3)：abstract, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-ridge-mean 在 6 个章节出现 (>3)：abstract, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-ridge-std 在 6 个章节出现 (>3)：conclusion, discussion, experiments, introduction, method, related_work",
+    "数值重复：cl-seeds 在 5 个章节出现 (>3)：conclusion, discussion, experiments, method, related_work",
+    "数值重复：cl-test 在 5 个章节出现 (>3)：discussion, experiments, introduction, method, related_work"
+  ],
+  "passed": false
+}

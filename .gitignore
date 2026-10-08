@@ -1,0 +1,38 @@
+# ---- 密钥：绝不入库 ----
+.env
+.env.*
+!.env.example
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- LaTeX 中间产物（PDF 是交付物，保留） ----
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+*.run.xml
+*.bcf
+
+# ---- 探测/临时目录：不是审计证据，只是本机调试残留 ----
+runs/_probe/
+runs/_lab_check/
+runs/_history/
+runs/_scratch/
+
+# ---- 编辑器 / 系统 ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

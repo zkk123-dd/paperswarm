@@ -1,0 +1,26 @@
+﻿archive text files: 2720
+modified files diffed: 2
+new files: 21
+  + jiuwenswarm/agents/paper/__init__.py
+  + jiuwenswarm/agents/paper/agentloop.py
+  + jiuwenswarm/agents/paper/assemble.py
+  + jiuwenswarm/agents/paper/evidence.py
+  + jiuwenswarm/agents/paper/lab.py
+  + jiuwenswarm/agents/paper/llm.py
+  + jiuwenswarm/agents/paper/telemetry.py
+  + jiuwenswarm/agents/paper/tex_gate.py
+  + jiuwenswarm/agents/paper/tools.py
+  + jiuwenswarm/agents/swarm/providers/paper_providers.py
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/bind.md
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/dependencies.yaml
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/roles/assembler.md
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/roles/evidence-auditor.md
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/roles/evidence-steward.md
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/roles/planner.md
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/roles/section-writer.md
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/scripts/workflow.py
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/SKILL.md
+  + jiuwenswarm/resources/agent/workspace/skills/paper-repro-swarm/workflow.md
+  + tests/agents/swarm/test_paper_providers.py
+no content drift outside the declared modified files
+

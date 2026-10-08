@@ -1,0 +1,94 @@
+{
+  "workflow_path": "E:\\存放\\agent\\upstream\\jiuwenswarm-develop\\jiuwenswarm\\resources\\agent\\workspace\\skills\\paper-repro-swarm\\scripts\\workflow.py",
+  "passed": 16,
+  "total": 16,
+  "ok": true,
+  "phases": [
+    "Plan",
+    "Register evidence",
+    "Draft sections",
+    "Assemble and verify"
+  ],
+  "checks": [
+    {
+      "name": "phase_order_matches_meta",
+      "ok": true,
+      "detail": "called=['Plan', 'Register evidence', 'Draft sections', 'Assemble and verify'] meta=['Plan', 'Register evidence', 'Draft sections', 'Assemble and verify']"
+    },
+    {
+      "name": "agent_label_sequence",
+      "ok": true,
+      "detail": "labels=['plan', 'evidence-steward', 'section-writer', 'section-writer', 'section-writer', 'section-writer', 'section-writer', 'assembler', 'evidence-auditor']"
+    },
+    {
+      "name": "every_agent_has_schema",
+      "ok": true,
+      "detail": "calls=[{'label': 'plan', 'phase': 'Plan', 'has_schema': True}, {'label': 'evidence-steward', 'phase': 'Register evidence', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'assembler', 'phase': 'Assemble and verify', 'has_schema': True}, {'label': 'evidence-auditor', 'phase': 'Assemble and verify', 'has_schema': True}]"
+    },
+    {
+      "name": "section_writers_share_one_phase",
+      "ok": true,
+      "detail": "section_writer_phases=['Draft sections', 'Draft sections', 'Draft sections', 'Draft sections', 'Draft sections']"
+    },
+    {
+      "name": "fanout_count_matches_plan",
+      "ok": true,
+      "detail": "section_writer_count=5"
+    },
+    {
+      "name": "claim_table_reaches_sections",
+      "ok": true,
+      "detail": "section prompt 必须携带 claim 表，否则写手无法引用宏"
+    },
+    {
+      "name": "must_cite_flags_experiments",
+      "ok": true,
+      "detail": "Experiments 章节必须被标记为 must-cite"
+    },
+    {
+      "name": "non_result_sections_not_flagged",
+      "ok": true,
+      "detail": "不含实验结果的章节不得被强制引用 claim"
+    },
+    {
+      "name": "latex_macro_preserved_verbatim",
+      "ok": true,
+      "detail": "prompt 里必须保留 claim 宏而不是被当成格式字段"
+    },
+    {
+      "name": "status_complete",
+      "ok": true,
+      "detail": "status=complete"
+    },
+    {
+      "name": "audit_ran",
+      "ok": true,
+      "detail": "audit={'checks': ['macro-to-claim mapping vs ledger', 'numeric literal scan of compiled PDF text', 'artifact digest re-verification'], 'findings': [], 'digest_matches': 'true', 'verdict': 'CLEAN'}"
+    },
+    {
+      "name": "no_must_fix",
+      "ok": true,
+      "detail": "must_fix=[]"
+    },
+    {
+      "name": "missing_sections_empty",
+      "ok": true,
+      "detail": "missing=[]"
+    },
+    {
+      "name": "degraded_status",
+      "ok": true,
+      "detail": "status=degraded"
+    },
+    {
+      "name": "degraded_skips_audit",
+      "ok": true,
+      "detail": "组装失败时不得运行审计（没有 PDF 可审）"
+    },
+    {
+      "name": "degraded_reports_unresolved",
+      "ok": true,
+      "detail": "must_fix=['cl-ols-mean']"
+    }
+  ]
+}

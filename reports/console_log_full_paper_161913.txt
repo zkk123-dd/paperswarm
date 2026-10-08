@@ -1,0 +1,35 @@
+﻿[run] paper-20260929-161913 -> E:\瀛樻斁\agent\paper-swarm\runs\paper-20260929-161913
+[1/5] 璺戝鐓у疄楠?...
+      OLS=0.6198 Ridge=0.3041 improve=50.94% (0.50s)
+[2/5] 鐧昏璇佹嵁鍙拌处 ...
+      artifact artifact.metrics sha256=ec42099aa169鈥?
+      claim cl-ols-mean    = 0.6198
+      claim cl-ols-std     = 0.1329
+      claim cl-ridge-mean  = 0.3041
+      claim cl-ridge-std   = 0.0623
+      claim cl-improve     = 50.94
+      claim cl-alpha       = 0.1
+      claim cl-noise       = 0.1225
+      claim cl-seeds       = 8
+      claim cl-features    = 120
+      claim cl-train       = 90
+      claim cl-test        = 200
+      鍙拌处鏍￠獙: passed=11 failed=0 ok=True
+[3/5] 璋冪敤妯″瀷閫愮珷鍐欎綔锛堟瘡绔犺繃璇佹嵁闂ㄦ帶锛?..
+      model=qwen2.5:7b-instruct-q4_K_M endpoint=http://127.0.0.1:11434/v1/chat/completions
+      introduction   ok (attempts=1, 2751 chars)
+      related_work   ok (attempts=1, 2067 chars)
+      method         ok (attempts=1, 2099 chars)
+      experiments    ok (attempts=1, 2340 chars)
+      discussion     ok (attempts=1, 2247 chars)
+      conclusion     ok (attempts=2, 1516 chars)
+      abstract       ok (963 chars)
+[4/5] 缁勮璁烘枃锛堝 ICLR 2026 妯℃澘 + 鍙拌处鍥炲～锛?..
+[5/5] 缂栬瘧 PDF ...
+
+==================================================================
+缂栬瘧: ok=True attempts=1
+PDF : main.pdf  pages=4(<=9:True) size=0.033MB(<=10:True)
+浜у嚭: E:\瀛樻斁\agent\paper-swarm\runs\paper-20260929-161913\paper
+==================================================================
+

@@ -1,0 +1,9 @@
+﻿src          files=9    lines=3032
+scripts      files=9    lines=1953
+tests        files=2    lines=855
+integration  files=1    lines=713
+jiuwenswarm\agents\paper                                               files=9   lines=3329
+jiuwenswarm\agents\swarm\providers\paper_providers.py                  files=1   lines=683
+jiuwenswarm\resources\agent\workspace\skills\paper-repro-swarm         files=10  lines=1110
+tests\agents\swarm\test_paper_providers.py                             files=1   lines=399
+--- all py under paper-swarm/src+scripts+tests+integration ---

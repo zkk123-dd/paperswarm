@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MVWYT39H1T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MVWYT39H1T');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanford Agentic Reviewer - Submit Paper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'stanford-red': '#8C1515',
+                        'stanford-red-dark': '#820000',
+                        'stanford-red-light': '#B83A4B',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .gradient-text {
+                background: linear-gradient(135deg, #8C1515 0%, #820000 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                padding-bottom: 0.1em;
+                line-height: 1.2;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-red-50 via-white to-red-50 min-h-screen">
+    <!-- Top Banner -->
+    <div class="bg-gradient-to-r from-red-50 to-pink-50 border-b border-red-100 text-center py-2 px-4">
+        <p class="text-base md:text-lg font-semibold text-gray-800">
+            Get detailed AI feedback on your research paper <span class="text-stanford-red font-bold">(free!)</span>
+        </p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo/Brand -->
+                <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <div class="w-10 h-10 bg-gradient-to-br from-stanford-red to-stanford-red-dark rounded-lg flex items-center justify-center shadow-sm">
+                        <span class="text-white font-bold text-xl">S</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <h1 class="text-lg font-bold text-gray-900">paperreview.ai</h1>
+                        <p class="text-xs text-gray-500">By Stanford ML Group</p>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center gap-1 sm:gap-2">
+                    <a href="/" class="px-4 sm:px-6 py-2 text-sm font-bold text-stanford-red border-b-4 border-stanford-red pointer-events-none">
+                        Upload Paper
+                    </a>
+                    <a href="/review" class="px-4 sm:px-6 py-2 text-sm font-semibold text-gray-600 hover:text-stanford-red hover:border-b-4 hover:border-gray-300 border-b-4 border-transparent transition-all duration-200">
+                        View Review
+                    </a>
+                    <a href="/tech-overview" class="px-4 sm:px-6 py-2 text-sm font-semibold text-gray-600 hover:text-stanford-red hover:border-b-4 hover:border-gray-300 border-b-4 border-transparent transition-all duration-200">
+                        Tech Overview
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header Section -->
+        <header class="text-center mb-8 pt-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold gradient-text mb-6">
+                Stanford Agentic Reviewer
+            </h1>
+            <!-- <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Developed by <strong class="text-stanford-red">Stanford Machine Learning Group</strong>
+            </p> -->
+        </header>
+
+        <!-- Main Card -->
+        <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+            <!-- Info Section -->
+            <div class="bg-gradient-to-br from-red-50 to-pink-50 p-8 md:p-10">
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-900">
+                    <span class="bg-stanford-red/10 p-2 rounded-lg">
+                        <i data-lucide="rocket" class="w-6 h-6 text-stanford-red"></i>
+                    </span>
+                    How it works
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-stanford-red rounded-full flex items-center justify-center font-bold text-white">1</div>
+                        <div>
+                            <h4 class="font-semibold mb-1 text-gray-900">Upload & Submit</h4>
+                            <p class="text-gray-600 text-sm">Upload your paper PDF and enter your email address</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-stanford-red rounded-full flex items-center justify-center font-bold text-white">2</div>
+                        <div>
+                            <h4 class="font-semibold mb-1 text-gray-900">Get Notified</h4>
+                            <p class="text-gray-600 text-sm">Receive an email notification when the AI review is complete</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-stanford-red rounded-full flex items-center justify-center font-bold text-white">3</div>
+                        <div>
+                            <h4 class="font-semibold mb-1 text-gray-900">View Review</h4>
+                            <p class="text-gray-600 text-sm">Come back to see the AI review and suggestions for your work</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="p-8 md:p-12">
+
+            <form id="uploadForm" class="space-y-8">
+                <div class="space-y-3">
+                    <label for="pdf" class="block text-base font-bold text-gray-800 flex items-center gap-2">
+                        <i data-lucide="paperclip" class="w-5 h-5 text-stanford-red"></i>
+                        Paper PDF *
+                    </label>
+                    <div class="file-upload">
+                        <input
+                            type="file"
+                            id="pdf"
+                            name="pdf"
+                            accept=".pdf"
+                            class="hidden"
+                        >
+                        <label for="pdf" class="group relative flex flex-col items-center justify-center w-full min-h-[240px] px-6 py-10 border-3 border-dashed border-gray-300 rounded-2xl cursor-pointer bg-gradient-to-br from-gray-50 to-white hover:from-red-50 hover:to-white hover:border-stanford-red transition-all duration-300 file-label">
+                            <div class="text-center">
+                                <div class="w-20 h-20 mx-auto mb-4 bg-stanford-red/10 rounded-full flex items-center justify-center group-hover:bg-stanford-red/20 transition-colors duration-300">
+                                    <i data-lucide="file-text" class="w-10 h-10 text-stanford-red"></i>
+                                </div>
+                                <span class="text-gray-700 font-semibold text-lg block mb-2 file-text">Choose PDF file or drag and drop</span>
+                                <span class="text-gray-500 text-sm">Max 10MB • First 15 pages analyzed</span>
+                            </div>
+                        </label>
+                        <span id="fileName" class="block mt-4 text-green-700 font-bold text-center text-lg bg-green-100 px-4 py-3 rounded-lg break-words overflow-wrap-anywhere" style="display: none;"></span>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <label for="email" class="block text-base font-bold text-gray-800 flex items-center gap-2">
+                        <i data-lucide="mail" class="w-5 h-5 text-stanford-red"></i>
+                        Email Address *
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        placeholder="your.email@university.edu"
+                        class="w-full px-5 py-4 text-base border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-stanford-red/20 focus:border-stanford-red transition-all duration-300 hover:border-gray-400"
+                    >
+                </div>
+
+                <div class="space-y-3">
+                    <label for="venue" class="block text-base font-bold text-gray-800 flex items-center gap-2">
+                        <i data-lucide="target" class="w-5 h-5 text-stanford-red"></i>
+                        Target Venue (Optional)
+                    </label>
+                    <select
+                        id="venue"
+                        name="venue"
+                        class="w-full px-5 py-4 text-base border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-stanford-red/20 focus:border-stanford-red transition-all duration-300 bg-white hover:border-gray-400"
+                    >
+                        <option value="">Select a conference/journal</option>
+                        <option value="ICLR">ICLR - International Conference on Learning Representations</option>
+                        <option value="NeurIPS">NeurIPS - Neural Information Processing Systems</option>
+                        <option value="ICML">ICML - International Conference on Machine Learning</option>
+                        <option value="CVPR">CVPR - Conference on Computer Vision and Pattern Recognition</option>
+                        <option value="AAAI">AAAI - Association for the Advancement of Artificial Intelligence</option>
+                        <option value="IJCAI">IJCAI - International Joint Conference on Artificial Intelligence</option>
+                        <option value="ACL">ACL - Association for Computational Linguistics</option>
+                        <option value="EMNLP">EMNLP - Empirical Methods in Natural Language Processing</option>
+                        <option value="OSDI">OSDI - Operating Systems Design and Implementation</option>
+                        <option value="SOSP">SOSP - Symposium on Operating Systems Principles</option>
+                        <option value="VLDB">VLDB - International Conference on Very Large Data Bases</option>
+                        <option value="SIGMOD">SIGMOD - ACM Special Interest Group on Management of Data</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="space-y-3" id="customVenueGroup" style="display: none;">
+                    <label for="customVenue" class="block text-base font-bold text-gray-800">Specify Venue</label>
+                    <input
+                        type="text"
+                        id="customVenue"
+                        name="customVenue"
+                        placeholder="Enter the conference or journal name"
+                        class="w-full px-5 py-4 text-base border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-stanford-red/20 focus:border-stanford-red transition-all duration-300 hover:border-gray-400"
+                    >
+                </div>
+
+                <div class="pt-6 border-t border-gray-200">
+                    <button
+                        type="submit"
+                        class="group relative w-full bg-gradient-to-r from-stanford-red to-stanford-red-dark hover:from-stanford-red-dark hover:to-stanford-red text-white font-bold text-lg py-5 px-8 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed disabled:transform-none overflow-hidden"
+                        id="submitBtn"
+                    >
+                        <span class="relative z-10">Submit for Review</span>
+                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    </button>
+                </div>
+            </form>
+
+            <div id="result" class="mt-8 rounded-xl border-l-4" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="text-center mt-8 mb-4">
+            <p class="text-sm text-gray-500">
+                Note: Reviews are AI generated and may contain errors. Please use them as guidance and apply your own judgment.
+            </p>
+            <p class="text-sm text-gray-500 mt-2">
+                Questions or feedback? Contact us at <a href="mailto:aireviewer@cs.stanford.edu" class="text-gray-500 hover:text-gray-700 font-semibold">aireviewer@cs.stanford.edu</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="/static/upload.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

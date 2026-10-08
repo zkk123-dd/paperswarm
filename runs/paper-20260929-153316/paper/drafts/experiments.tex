@@ -1,0 +1,13 @@
+\subsection{Experiments}
+
+To evaluate the performance of PaperSwarm, we conducted a series of experiments on synthetic datasets. Each experiment involved generating a design matrix with \result{cl-features} features and \result{cl-train} training samples per split. The test set consisted of \result{cl-test} samples, ensuring a balanced evaluation across different configurations. We compared the performance of the minimum-norm Ordinary Least Squares (OLS) solution and ridge regression, varying the penalty parameter in the latter.
+
+The results indicate that the minimum-norm OLS solution, while simple, exhibits significant variability in performance. Specifically, the mean test Mean Squared Error (MSE) of the OLS solution, averaged over \result{cl-seeds} seeds, was \result{cl-ols-mean}. However, the standard deviation of the OLS test MSE across seeds was \result{cl-ols-std}, suggesting high variance in the OLS performance.
+
+In contrast, ridge regression demonstrated more stable performance. The mean test MSE of ridge regression at the selected penalty was \result{cl-ridge-mean}. The standard deviation of the ridge test MSE across seeds was \result{cl-ridge-std}, indicating lower variance. This suggests that ridge regression is more robust to the random initialization of seeds, making it a more reliable choice for practical applications.
+
+The relative reduction in mean test MSE achieved by ridge over OLS was \result{cl-improve} percent, highlighting the benefit of using ridge regression in terms of mean performance. The selected ridge penalty (alpha) that attained the lowest mean test MSE was \result{cl-alpha}, further emphasizing the importance of tuning the regularization parameter.
+
+To provide a baseline, we also estimated the irreducible noise floor (additive noise variance) used as an MSE reference, which was \result{cl-noise}. This value serves as a lower bound on the achievable test MSE, indicating the inherent noise in the data that cannot be reduced by any model.
+
+Overall, these results demonstrate the effectiveness of PaperSwarm in generating reproducible and reliable experimental outcomes. The high variance in OLS and the low variance in ridge regression highlight the importance of regularization in machine learning models. The relative improvement and the selected penalty further underscore the practical benefits of using ridge regression over OLS in this context. These findings are consistent with the theoretical expectations and previous research, as noted in \citet{hoerl1970ridge} and \citet{fars2026}, supporting the robustness and generalizability of our approach.

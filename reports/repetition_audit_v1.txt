@@ -1,0 +1,63 @@
+==============================================================================
+写作重复度审计：runs\paper-20260929-164239\paper\drafts
+==============================================================================
+
+章节概览
+  section              words     TTR  result{}  distinct
+  abstract                91   0.769         7         7
+  conclusion              86   0.861         8         8
+  discussion             169   0.716        11        11
+  experiments            163   0.742        11        11
+  introduction           162   0.759        10        10
+  method                 184   0.603        12        11
+  related_work           139   0.763        11        11
+
+跨章节 4-gram 包含率 TOP
+  left             right             containment   shared
+  abstract         conclusion            21.69%       18
+  abstract         method                15.91%       14
+  method           related_work          13.97%       19
+  abstract         discussion            13.64%       12
+  conclusion       discussion            12.05%       10
+  abstract         introduction          11.36%       10
+  discussion       method                10.24%       17
+  conclusion       experiments            9.64%        8
+  abstract         experiments            9.09%        8
+  conclusion       introduction           8.43%        7
+  conclusion       method                 8.43%        7
+  introduction     method                 7.55%       12
+
+同一 claim 被讲了几遍
+  cl-alpha         x8   sections=7 [abstract, conclusion, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-features      x7   sections=7 [abstract, conclusion, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-improve       x7   sections=7 [abstract, conclusion, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-ols-std       x7   sections=7 [abstract, conclusion, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-train         x7   sections=7 [abstract, conclusion, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-noise         x6   sections=6 [conclusion, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-ols-mean      x6   sections=6 [abstract, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-ridge-mean    x6   sections=6 [abstract, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-ridge-std     x6   sections=6 [conclusion, discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+  cl-seeds         x5   sections=5 [conclusion, discussion, experiments, method, related_work]  <- OVER-REPEATED
+  cl-test          x5   sections=5 [discussion, experiments, introduction, method, related_work]  <- OVER-REPEATED
+
+汇总
+  章节数                       = 7
+  \result{} 出现总次数         = 70
+  不同 claim 数                = 11
+  实质 claim 数（非 tr- 追踪）  = 11
+  重复引用的多余次数            = 59
+
+结论：FAIL（11 条）
+  - 数值重复：cl-alpha 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-features 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-improve 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-ols-std 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-train 在 7 个章节出现 (>3)：abstract, conclusion, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-noise 在 6 个章节出现 (>3)：conclusion, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-ols-mean 在 6 个章节出现 (>3)：abstract, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-ridge-mean 在 6 个章节出现 (>3)：abstract, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-ridge-std 在 6 个章节出现 (>3)：conclusion, discussion, experiments, introduction, method, related_work
+  - 数值重复：cl-seeds 在 5 个章节出现 (>3)：conclusion, discussion, experiments, method, related_work
+  - 数值重复：cl-test 在 5 个章节出现 (>3)：discussion, experiments, introduction, method, related_work
+
+[write] reports\repetition_audit_v1.json

@@ -1,0 +1,14 @@
+﻿exit=1
+python.exe :   File "E:\瀛樻斁\agent\upstream\jiuwenswarm-develop\jiuwenswarm\agen
+ts\swarm\config_specs.py", line 538
+所在位置 行:454 字符: 8
++ $out = & $py -m py_compile @files 2>&1 | Out-String
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (  File "E:\瀛樻斁\...s.py", line 538 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    registry.CONTEXT_PROCESSOR: _context_processor_params,
+                              ^
+SyntaxError: invalid syntax
+

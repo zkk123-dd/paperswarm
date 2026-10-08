@@ -1,0 +1,41 @@
+% 本文件由 paperswarm.assemble 自动生成，请勿手工编辑。
+% 模板来源：ICLR 2026 官方 Master-Template（iclr2026_conference.sty），未做任何修改。
+\documentclass{article}
+\usepackage{iclr2026_conference,times}
+\input{math_commands.tex}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+
+\title{PaperSwarm: An Evidence-Gated Multi-Agent System for Reproducible Paper Generation}
+
+\author{Anonymous Authors \\
+Anonymous Institution \\
+\texttt{anonymous@example.com}}
+
+% 投稿版必须匿名：\iclrfinalcopy 保持注释状态。
+% \iclrfinalcopy
+\begin{document}
+\maketitle
+
+\begin{abstract}
+% 本文件由 paperswarm.tex_gate 从台账自动生成，请勿手工编辑。
+% 每个数值均由证据台账注入：claim_id -> (artifact SHA-256, JSON Pointer)。
+PaperSwarm, a novel multi-agent system, addresses the challenge of generating reproducible research papers in machine learning. By leveraging a swarm of agents, PaperSwarm ensures that every claim is supported by empirical evidence, enhancing transparency and verifiability. Our experiments on a synthetic dataset demonstrated a significant improvement in generalization performance when using ridge regression over the minimum-norm ordinary least squares (OLS) solution. Specifically, ridge regression achieved a mean test Mean Squared Error (MSE) of 0.3041, a reduction of 50.94\% compared to the OLS solution, which had a mean test MSE of 0.6198. The lower variance in ridge regression, indicated by a standard deviation of 0.0623, further underscores its superior stability and reliability. These results highlight the effectiveness of PaperSwarm in producing robust and reproducible research.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\bibliography{references}
+\bibliographystyle{iclr2026_conference}
+
+\end{document}

@@ -1,0 +1,38 @@
+﻿=== latest auto ===
+pdf: E:\瀛樻斁\agent\paper-swarm\runs\paper-20260929-161913\paper\main.pdf
+  [PASS] pdf_exists
+  [PASS] size_within_10mb
+  [PASS] pdf_readable
+  [PASS] analyzed_pages_within_15
+  [PASS] english_language
+  [PASS] anonymized_for_double_blind
+  [PASS] no_unresolved_result_macro
+  [PASS] first_page_has_content
+PASS 8 / WARN 0 / FAIL 0
+report -> E:\瀛樻斁\agent\paper-swarm\reports\review_readiness.json
+report -> E:\瀛樻斁\agent\paper-swarm\reports\review_readiness.md
+
+exit_latest=0
+=== explicit 152818 (1-page placeholder) ===
+pdf: E:\瀛樻斁\agent\paper-swarm\runs\paper-20260929-152818\paper\main.pdf
+  [PASS] pdf_exists
+  [PASS] size_within_10mb
+  [PASS] pdf_readable
+  [PASS] analyzed_pages_within_15
+  [PASS] english_language
+  [PASS] anonymized_for_double_blind
+  [PASS] no_unresolved_result_macro
+  [PASS] first_page_has_content
+PASS 8 / WARN 0 / FAIL 0
+report -> E:\瀛樻斁\agent\paper-swarm\reports\review_readiness.json
+report -> E:\瀛樻斁\agent\paper-swarm\reports\review_readiness.md
+
+exit_placeholder=0
+=== nonexistent ===
+pdf: E:\瀛樻斁\agent\paper-swarm\runs\nope\main.pdf
+  [FAIL] pdf_exists
+PASS 0 / WARN 0 / FAIL 1
+report -> E:\瀛樻斁\agent\paper-swarm\reports\review_readiness.json
+report -> E:\瀛樻斁\agent\paper-swarm\reports\review_readiness.md
+
+exit_missing=1

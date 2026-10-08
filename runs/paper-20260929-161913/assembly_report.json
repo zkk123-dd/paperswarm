@@ -1,0 +1,74 @@
+{
+  "work_dir": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper",
+  "ok": true,
+  "abstract_refs": 7,
+  "sections": [
+    {
+      "name": "introduction",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\drafts\\introduction.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\sections\\introduction.tex",
+      "refs": 11,
+      "resolved": 11,
+      "warnings": []
+    },
+    {
+      "name": "related_work",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\drafts\\related_work.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\sections\\related_work.tex",
+      "refs": 11,
+      "resolved": 11,
+      "warnings": []
+    },
+    {
+      "name": "method",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\drafts\\method.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\sections\\method.tex",
+      "refs": 12,
+      "resolved": 12,
+      "warnings": []
+    },
+    {
+      "name": "experiments",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\drafts\\experiments.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\sections\\experiments.tex",
+      "refs": 15,
+      "resolved": 15,
+      "warnings": []
+    },
+    {
+      "name": "discussion",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\drafts\\discussion.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\sections\\discussion.tex",
+      "refs": 9,
+      "resolved": 9,
+      "warnings": []
+    },
+    {
+      "name": "conclusion",
+      "src": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\drafts\\conclusion.tex",
+      "dst": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\sections\\conclusion.tex",
+      "refs": 10,
+      "resolved": 10,
+      "warnings": []
+    }
+  ],
+  "main_tex": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\main.tex",
+  "compile": {
+    "ok": true,
+    "pdf_path": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\main.pdf",
+    "returncode": 0,
+    "attempts": 1,
+    "stdout_tail": "note: \"version 2\" Tectonic command-line interface activated\nnote: Running TeX ...\nnote: Running BibTeX on main.aux ...\nnote: Rerunning TeX because bibtex was run ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\main.pdf` (33.689453125 KiB)\nnote: Skipped writing 3 intermediate files (use --keep-intermediates to keep them)\n",
+    "stderr_tail": "Fontconfig error: Cannot load default config file: No such file: (null)\nwarning: sections/introduction.tex:20: Underfull \\vbox (badness 4120) has occurred while \\output is active\nwarning: sections/introduction.tex:20: Underfull \\vbox (badness 4120) has occurred while \\output is active\nwarning: sections/introduction.tex:20: Underfull \\vbox (badness 4120) has occurred while \\output is active\nwarning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.\n"
+  },
+  "pdf": {
+    "path": "E:\\存放\\agent\\paper-swarm\\runs\\paper-20260929-161913\\paper\\main.pdf",
+    "pages": 4,
+    "size_bytes": 34498,
+    "size_mb": 0.033,
+    "size_ok": true,
+    "pages_ok": true,
+    "page_limit": 9,
+    "size_limit_bytes": 10485760
+  }
+}

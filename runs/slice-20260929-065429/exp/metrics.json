@@ -1,0 +1,57 @@
+{
+  "experiment": "ridge_vs_ols_synthetic",
+  "description": "在近共线（60 个特征由 3 个隐因子线性生成）的线性回归任务上比较 OLS 与岭回归（alpha=1.0）的测试集 MSE，每个设置跑 5 个随机种子。该区间内 OLS 在近零特征值方向上放大噪声，用于检验 L2 正则化的实际收益。",
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_train": 80,
+    "n_test": 400,
+    "n_features": 60,
+    "n_latent": 3,
+    "loading_noise": 0.02,
+    "noise_sigma": 0.35,
+    "ridge_alpha": 1.0
+  },
+  "per_seed": [
+    {
+      "seed": 0,
+      "mse_ols": 0.4431530134151669,
+      "mse_ridge": 0.11980346882427337
+    },
+    {
+      "seed": 1,
+      "mse_ols": 0.5387520986586548,
+      "mse_ridge": 0.1480474105369152
+    },
+    {
+      "seed": 2,
+      "mse_ols": 0.8337138289275137,
+      "mse_ridge": 0.1552616634913502
+    },
+    {
+      "seed": 3,
+      "mse_ols": 0.46855238634139296,
+      "mse_ridge": 0.17556956822316075
+    },
+    {
+      "seed": 4,
+      "mse_ols": 0.6485597302952643,
+      "mse_ridge": 0.1523660568033365
+    }
+  ],
+  "results": {
+    "mse_ols_mean": 0.5865462115275986,
+    "mse_ols_std": 0.15945684124004503,
+    "mse_ridge_mean": 0.1502096335758072,
+    "mse_ridge_std": 0.020015678330306135,
+    "relative_improvement_pct": 74.39082707829587
+  },
+  "wall_seconds": 0.0175,
+  "numpy_version": "2.5.2",
+  "generated_at": "2026-09-29T06:54:29+00:00"
+}

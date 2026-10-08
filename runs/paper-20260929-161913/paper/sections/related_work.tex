@@ -1,0 +1,11 @@
+% 本文件由 paperswarm.tex_gate 从台账自动生成，请勿手工编辑。
+% 每个数值均由证据台账注入：claim_id -> (artifact SHA-256, JSON Pointer)。
+Related Work
+
+The problem of generating reproducible research papers has garnered attention in recent years, with various approaches addressing different aspects of the challenge. Fars et al. \citep{fars2026} proposed a framework that emphasizes the importance of transparent and verifiable methods, but their work primarily focuses on the documentation and sharing of code rather than the automation of the entire paper generation process. 
+
+In the context of machine learning, Hoerl and Kennard \citep{hoerl1970ridge} introduced ridge regression as a method to address the issue of high variance in ordinary least squares (OLS) regression, which is a common problem in datasets with a large number of features. Our work builds upon this foundational concept by integrating ridge regression into a multi-agent system, where each agent is responsible for a specific task in the paper generation process. 
+
+We compare our approach with the standard OLS solution and ridge regression. The mean test mean squared error (MSE) of the minimum-norm OLS solution across all seeds is 0.6198, with a standard deviation of 0.1329, indicating high variance in the OLS performance. In contrast, the mean test MSE of ridge regression, achieved at the selected penalty 0.1, is 0.3041, with a lower standard deviation of 0.0623, suggesting more consistent performance. The relative reduction in mean test MSE achieved by ridge over OLS is 50.94\%, highlighting the effectiveness of our approach in reducing variance and improving model stability.
+
+Our experiments were conducted on a dataset with 120 features and 90 training samples per split, using 8 random seeds. The test set consisted of 200 samples. The irreducible noise floor, serving as a reference for the MSE, was set to 0.1225. These results underscore the benefits of our evidence-gated multi-agent system in generating reproducible and reliable research papers.

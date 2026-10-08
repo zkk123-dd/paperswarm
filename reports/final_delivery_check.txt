@@ -1,0 +1,48 @@
+final delivery check @ 2026-09-29T16:49:37+08:00
+
+=== 1. 交付产物 ===
+total 76
+drwxr-xr-x 1 周凯 197609     0 Sep 29 16:44 .
+drwxr-xr-x 1 周凯 197609     0 Sep 29 16:44 ..
+-rw-r--r-- 1 周凯 197609 34498 Sep 29 16:44 PaperSwarm-ICLR2026-before-heading-fix.pdf
+-rw-r--r-- 1 周凯 197609 34729 Sep 29 16:44 PaperSwarm-ICLR2026.pdf
+
+=== 2. 最终 PDF 结构 ===
+pages=4 bytes=34729 sha256=f3813537b9515c562df8d2d68bfdc2a8264b271e04d600b3693e83f882a116cb
+toc_entries=6  (全部应为 L1)
+   L1 Introduction  p1
+   L1 Related Work  p1
+   L1 Method  p2
+   L1 Experiments  p2
+   L1 Discussion  p3
+   L1 Conclusion  p3
+结构断言: PASS（6 条一级章节）
+
+=== 3. assembly_report 章节 ===
+   introduction   refs=10 resolved=10 warnings=0
+   related_work   refs=11 resolved=11 warnings=0
+   method         refs=12 resolved=12 warnings=0
+   experiments    refs=11 resolved=11 warnings=0
+   discussion     refs=11 resolved=11 warnings=0
+   conclusion     refs=8 resolved=8 warnings=0
+   pdf: 4 pages 34729 bytes, ok= True
+
+=== 4. 离线回归 ===
+9/9 passed
+96/96 passed
+17 passed in 1.24s
+
+=== 5. 文档 ===
+DELIVERABLES.md
+agentic-reviewer-eval.md
+architecture-and-innovation.md
+bugfix-section-headings.md
+env-recon.md
+fars-benchmark.md
+phase0-1-design.md
+phase2-vertical-slice-report.md
+reproduction-guide.md
+source-changeset-verified.md
+token-cost-report.md
+upstream-ci-runbook.md
+upstream-contribution.md

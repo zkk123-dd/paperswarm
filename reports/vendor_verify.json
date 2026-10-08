@@ -1,0 +1,174 @@
+{
+  "package": "jiuwenswarm.agents.paper",
+  "package_dir": "E:\\存放\\agent\\upstream\\jiuwenswarm-develop\\jiuwenswarm\\agents\\paper",
+  "ok": true,
+  "passed": 14,
+  "total": 14,
+  "checks": [
+    {
+      "check": "package_dir_exists",
+      "passed": true,
+      "detail": "E:\\存放\\agent\\upstream\\jiuwenswarm-develop\\jiuwenswarm\\agents\\paper"
+    },
+    {
+      "check": "package_files_found",
+      "passed": true,
+      "detail": [
+        "__init__.py",
+        "agentloop.py",
+        "assemble.py",
+        "evidence.py",
+        "lab.py",
+        "llm.py",
+        "telemetry.py",
+        "tex_gate.py",
+        "tools.py"
+      ]
+    },
+    {
+      "check": "syntax_compiles",
+      "passed": true,
+      "detail": "all files compile"
+    },
+    {
+      "check": "imports_within_allowlist",
+      "passed": true,
+      "detail": [
+        "fitz",
+        "numpy",
+        "pymupdf",
+        "requests",
+        "yaml"
+      ]
+    },
+    {
+      "check": "intra_package_refs_resolve",
+      "passed": true,
+      "detail": {
+        "refs": 8,
+        "dangling": []
+      }
+    },
+    {
+      "check": "no_legacy_package_imports",
+      "passed": true,
+      "detail": "none"
+    },
+    {
+      "check": "package_imports",
+      "passed": true,
+      "detail": {
+        "version": "0.2.0",
+        "exports": [
+          "__version__",
+          "agentloop",
+          "assemble",
+          "evidence",
+          "lab",
+          "llm",
+          "telemetry",
+          "tex_gate",
+          "tools"
+        ]
+      }
+    },
+    {
+      "check": "kernel_modules_present",
+      "passed": true,
+      "detail": [
+        "__version__",
+        "agentloop",
+        "assemble",
+        "evidence",
+        "lab",
+        "llm",
+        "telemetry",
+        "tex_gate",
+        "tools"
+      ]
+    },
+    {
+      "check": "experiment_ran",
+      "passed": true,
+      "detail": "C:\\Users\\周凯\\AppData\\Local\\Temp\\paper-vendor-verify-zus0sxmx\\exp\\metrics.json"
+    },
+    {
+      "check": "ledger_self_check",
+      "passed": true,
+      "detail": {
+        "passed": 2,
+        "failed": 0
+      }
+    },
+    {
+      "check": "gate_accepts_macro_section",
+      "passed": true,
+      "detail": {
+        "total_refs": 2,
+        "issues": []
+      }
+    },
+    {
+      "check": "gate_rejects_handwritten_number",
+      "passed": true,
+      "detail": {
+        "issues": [
+          {
+            "line": 0,
+            "claim_id": "",
+            "reason": "第 1 行疑似手写数值 '50.9 '：Ridge reduces the mean test MSE by 50.9 percent improvement over OLS."
+          }
+        ]
+      }
+    },
+    {
+      "check": "resolve_backfills_values",
+      "passed": true,
+      "detail": {
+        "resolved": 2,
+        "no_macro_left": true
+      }
+    },
+    {
+      "check": "ledger_detects_tampered_artifact",
+      "passed": true,
+      "detail": {
+        "total": 2,
+        "failed": 2,
+        "results": [
+          {
+            "claim_id": "cl-ols-mean",
+            "ok": false,
+            "reason": "artifact 内容已被修改（摘要不匹配，疑似篡改实验结果）",
+            "value": null
+          },
+          {
+            "claim_id": "cl-improve",
+            "ok": false,
+            "reason": "artifact 内容已被修改（摘要不匹配，疑似篡改实验结果）",
+            "value": null
+          }
+        ]
+      }
+    }
+  ],
+  "facts": {
+    "experiment": {
+      "ols_mse_mean": 0.6198,
+      "ridge_mse_mean": 0.3041,
+      "improvement_pct": 50.94,
+      "metrics_path": "C:\\Users\\周凯\\AppData\\Local\\Temp\\paper-vendor-verify-zus0sxmx\\exp\\metrics.json"
+    },
+    "claims": [
+      {
+        "claim_id": "cl-ols-mean",
+        "display": "0.6198"
+      },
+      {
+        "claim_id": "cl-improve",
+        "display": "50.94"
+      }
+    ],
+    "resolved_text": "% 本文件由 jiuwenswarm.agents.paper.tex_gate 从台账自动生成，请勿手工编辑。\n% 每个数值均由证据台账注入：claim_id -> (artifact SHA-256, JSON Pointer)。\nRidge reduces the mean test MSE to 50.94 percent of the OLS error, whose mean is 0.6198."
+  }
+}

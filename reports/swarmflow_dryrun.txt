@@ -1,0 +1,18 @@
+﻿swarmflow dry-run: 16/16 checks passed
+  [OK  ] phase_order_matches_meta: called=['Plan', 'Register evidence', 'Draft sections', 'Assemble and verify'] meta=['Plan', 'Register evidence', 'Draft sections', 'Assemble and verify']
+  [OK  ] agent_label_sequence: labels=['plan', 'evidence-steward', 'section-writer', 'section-writer', 'section-writer', 'section-writer', 'section-writer', 'assembler', 'evidence-auditor']
+  [OK  ] every_agent_has_schema: calls=[{'label': 'plan', 'phase': 'Plan', 'has_schema': True}, {'label': 'evidence-steward', 'phase': 'Register evidence', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'section-writer', 'phase': 'Draft sections', 'has_schema': True}, {'label': 'assembler', 'phase': 'Assemble and verify', 'has_schema': True}, {'label': 'evidence-auditor', 'phase': 'Assemble and verify', 'has_schema': True}]
+  [OK  ] section_writers_share_one_phase: section_writer_phases=['Draft sections', 'Draft sections', 'Draft sections', 'Draft sections', 'Draft sections']
+  [OK  ] fanout_count_matches_plan: section_writer_count=5
+  [OK  ] claim_table_reaches_sections: section prompt 蹇呴』鎼哄甫 claim 琛紝鍚﹀垯鍐欐墜鏃犳硶寮曠敤瀹?
+  [OK  ] must_cite_flags_experiments: Experiments 绔犺妭蹇呴』琚爣璁颁负 must-cite
+  [OK  ] non_result_sections_not_flagged: 涓嶅惈瀹為獙缁撴灉鐨勭珷鑺備笉寰楄寮哄埗寮曠敤 claim
+  [OK  ] latex_macro_preserved_verbatim: prompt 閲屽繀椤讳繚鐣?claim 瀹忚€屼笉鏄褰撴垚鏍煎紡瀛楁
+  [OK  ] status_complete: status=complete
+  [OK  ] audit_ran: audit={'checks': ['macro-to-claim mapping vs ledger', 'numeric literal scan of compiled PDF text', 'artifact digest re-verification'], 'findings': [], 'digest_matches': 'true', 'verdict': 'CLEAN'}
+  [OK  ] no_must_fix: must_fix=[]
+  [OK  ] missing_sections_empty: missing=[]
+  [OK  ] degraded_status: status=degraded
+  [OK  ] degraded_skips_audit: 缁勮澶辫触鏃朵笉寰楄繍琛屽璁★紙娌℃湁 PDF 鍙锛?
+  [OK  ] degraded_reports_unresolved: must_fix=['cl-ols-mean']
+

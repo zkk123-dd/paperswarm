@@ -1,0 +1,9 @@
+% 本文件由 paperswarm.tex_gate 从台账自动生成，请勿手工编辑。
+% 每个数值均由证据台账注入：claim_id -> (artifact SHA-256, JSON Pointer)。
+Related Work
+
+The generation of reproducible research papers, particularly in the context of machine learning, has garnered significant attention. Fars et al. \citep{fars2026} propose a framework that emphasizes the importance of transparent and verifiable results. Our approach, PaperSwarm, aligns with this goal by ensuring that every claim is supported by empirical evidence and that the process of generating the paper is fully reproducible.
+
+In the context of linear regression, traditional Ordinary Least Squares (OLS) \citep{hoerl1970ridge} has been a standard method. However, its performance can be suboptimal in the presence of multicollinearity or when the number of features 120 is close to the number of samples. To address these issues, ridge regression has been proposed as a regularization technique \citep{hoerl1970ridge}. Our experiments indicate that ridge regression, when tuned appropriately, can achieve a mean test Mean Squared Error (MSE) of 0.3041 with a standard deviation of 0.0623, which is notably lower than the 0.6198 of the OLS solution. The relative improvement in test MSE, achieved by ridge over OLS, is 50.94 percent.
+
+The selected ridge penalty 0.1 was determined through a grid search, and the performance was consistently evaluated over 8 random splits. Each split consisted of 90 training samples and 200 test samples. The irreducible noise floor, used as a reference for the MSE, was set to 0.1225. Our results demonstrate that while OLS exhibits high variance 0.1329, ridge regression shows lower variance, making it a more reliable choice in practice.
